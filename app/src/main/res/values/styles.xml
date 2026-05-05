@@ -1,0 +1,565 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+   TaskFlow Widget Styles
+   Custom styles for Material components following our design system.
+-->
+<resources>
+
+    <!-- ============================== -->
+    <!-- SHAPE APPEARANCES              -->
+    <!-- ============================== -->
+    
+    <style name="ShapeAppearance.TaskFlow.Small" parent="ShapeAppearance.Material3.Corner.Small">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/radius_sm</item>
+    </style>
+    
+    <style name="ShapeAppearance.TaskFlow.Medium" parent="ShapeAppearance.Material3.Corner.Medium">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/radius_md</item>
+    </style>
+    
+    <style name="ShapeAppearance.TaskFlow.Large" parent="ShapeAppearance.Material3.Corner.Large">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/radius_lg</item>
+    </style>
+    
+    <style name="ShapeAppearance.TaskFlow.ExtraLarge" parent="ShapeAppearance.Material3.Corner.ExtraLarge">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/radius_xl</item>
+    </style>
+    
+    <style name="ShapeAppearance.TaskFlow.Dialog" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/dialog_corner_radius</item>
+    </style>
+    
+    <style name="ShapeAppearance.TaskFlow.BottomSheet" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">@dimen/bottom_sheet_corner_radius</item>
+        <item name="cornerSizeTopRight">@dimen/bottom_sheet_corner_radius</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+    </style>
+    
+    <style name="ShapeAppearance.TaskFlow.Circle" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <!-- ============================== -->
+    <!-- TEXT APPEARANCES               -->
+    <!-- ============================== -->
+    
+    <!-- Display -->
+    <style name="TextAppearance.TaskFlow.Display.Large" parent="TextAppearance.Material3.DisplayLarge">
+        <item name="fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">@dimen/text_display_large</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+    
+    <style name="TextAppearance.TaskFlow.Display.Medium" parent="TextAppearance.Material3.DisplayMedium">
+        <item name="fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">@dimen/text_display_medium</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+    
+    <style name="TextAppearance.TaskFlow.Display.Small" parent="TextAppearance.Material3.DisplaySmall">
+        <item name="fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">@dimen/text_display_small</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+    
+    <!-- Headline -->
+    <style name="TextAppearance.TaskFlow.Headline.Large" parent="TextAppearance.Material3.HeadlineLarge">
+        <item name="fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">@dimen/text_headline_large</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+    
+    <style name="TextAppearance.TaskFlow.Headline.Medium" parent="TextAppearance.Material3.HeadlineMedium">
+        <item name="fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">@dimen/text_headline_medium</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+    
+    <style name="TextAppearance.TaskFlow.Headline.Small" parent="TextAppearance.Material3.HeadlineSmall">
+        <item name="fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">@dimen/text_headline_small</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+    
+    <!-- Title -->
+    <style name="TextAppearance.TaskFlow.Title.Large" parent="TextAppearance.Material3.TitleLarge">
+        <item name="fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">@dimen/text_title_large</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+    
+    <style name="TextAppearance.TaskFlow.Title.Medium" parent="TextAppearance.Material3.TitleMedium">
+        <item name="fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">@dimen/text_title_medium</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+    
+    <style name="TextAppearance.TaskFlow.Title.Small" parent="TextAppearance.Material3.TitleSmall">
+        <item name="fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">@dimen/text_title_small</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+    
+    <!-- Body -->
+    <style name="TextAppearance.TaskFlow.Body.Large" parent="TextAppearance.Material3.BodyLarge">
+        <item name="fontFamily">sans-serif</item>
+        <item name="android:textSize">@dimen/text_body_large</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+    
+    <style name="TextAppearance.TaskFlow.Body.Medium" parent="TextAppearance.Material3.BodyMedium">
+        <item name="fontFamily">sans-serif</item>
+        <item name="android:textSize">@dimen/text_body_medium</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+    
+    <style name="TextAppearance.TaskFlow.Body.Small" parent="TextAppearance.Material3.BodySmall">
+        <item name="fontFamily">sans-serif</item>
+        <item name="android:textSize">@dimen/text_body_small</item>
+        <item name="android:textColor">@color/text_secondary</item>
+    </style>
+    
+    <!-- Label -->
+    <style name="TextAppearance.TaskFlow.Label.Large" parent="TextAppearance.Material3.LabelLarge">
+        <item name="fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">@dimen/text_label_large</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+    
+    <style name="TextAppearance.TaskFlow.Label.Medium" parent="TextAppearance.Material3.LabelMedium">
+        <item name="fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">@dimen/text_label_medium</item>
+        <item name="android:textColor">@color/text_secondary</item>
+    </style>
+    
+    <style name="TextAppearance.TaskFlow.Label.Small" parent="TextAppearance.Material3.LabelSmall">
+        <item name="fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">@dimen/text_label_small</item>
+        <item name="android:textColor">@color/text_tertiary</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:letterSpacing">0.05</item>
+    </style>
+
+    <!-- ============================== -->
+    <!-- CARD STYLES                    -->
+    <!-- ============================== -->
+    
+    <style name="Widget.TaskFlow.Card" parent="Widget.Material3.CardView.Elevated">
+        <item name="cardCornerRadius">@dimen/card_corner_radius</item>
+        <item name="cardElevation">@dimen/card_elevation</item>
+        <item name="cardBackgroundColor">@color/surface</item>
+        <item name="contentPadding">@dimen/card_padding</item>
+        <item name="rippleColor">@color/ripple_light</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.TaskFlow.Medium</item>
+    </style>
+    
+    <style name="Widget.TaskFlow.Card.Outlined" parent="Widget.Material3.CardView.Outlined">
+        <item name="cardCornerRadius">@dimen/card_corner_radius</item>
+        <item name="cardElevation">0dp</item>
+        <item name="cardBackgroundColor">@color/surface</item>
+        <item name="strokeColor">@color/outline_variant</item>
+        <item name="strokeWidth">@dimen/stroke_regular</item>
+        <item name="contentPadding">@dimen/card_padding</item>
+        <item name="rippleColor">@color/ripple_light</item>
+    </style>
+    
+    <style name="Widget.TaskFlow.Card.Filled" parent="Widget.Material3.CardView.Filled">
+        <item name="cardCornerRadius">@dimen/card_corner_radius</item>
+        <item name="cardElevation">0dp</item>
+        <item name="cardBackgroundColor">@color/surface_container</item>
+        <item name="contentPadding">@dimen/card_padding</item>
+        <item name="rippleColor">@color/ripple_light</item>
+    </style>
+    
+    <!-- Task Card (Kanban) -->
+    <style name="Widget.TaskFlow.Card.Task" parent="Widget.TaskFlow.Card">
+        <item name="cardCornerRadius">@dimen/radius_md</item>
+        <item name="cardElevation">@dimen/elevation_sm</item>
+        <item name="android:layout_margin">@dimen/task_card_margin</item>
+    </style>
+    
+    <!-- Dashboard Card -->
+    <style name="Widget.TaskFlow.Card.Dashboard" parent="Widget.TaskFlow.Card">
+        <item name="cardCornerRadius">@dimen/radius_lg</item>
+        <item name="cardElevation">@dimen/elevation_sm</item>
+    </style>
+
+    <!-- ============================== -->
+    <!-- BUTTON STYLES                  -->
+    <!-- ============================== -->
+    
+    <style name="Widget.TaskFlow.Button" parent="Widget.Material3.Button">
+        <item name="cornerRadius">@dimen/button_corner_radius</item>
+        <item name="android:minHeight">@dimen/button_height</item>
+        <item name="android:paddingStart">@dimen/button_padding_horizontal</item>
+        <item name="android:paddingEnd">@dimen/button_padding_horizontal</item>
+        <item name="android:textAppearance">@style/TextAppearance.TaskFlow.Label.Large</item>
+        <item name="backgroundTint">@color/primary</item>
+    </style>
+    
+    <style name="Widget.TaskFlow.Button.Outlined" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="cornerRadius">@dimen/button_corner_radius</item>
+        <item name="android:minHeight">@dimen/button_height</item>
+        <item name="strokeColor">@color/outline</item>
+        <item name="strokeWidth">@dimen/stroke_regular</item>
+        <item name="android:textColor">@color/primary</item>
+    </style>
+    
+    <style name="Widget.TaskFlow.Button.Text" parent="Widget.Material3.Button.TextButton">
+        <item name="cornerRadius">@dimen/button_corner_radius</item>
+        <item name="android:minHeight">@dimen/button_height</item>
+        <item name="android:textColor">@color/primary</item>
+    </style>
+    
+    <style name="Widget.TaskFlow.Button.Tonal" parent="Widget.Material3.Button.TonalButton">
+        <item name="cornerRadius">@dimen/button_corner_radius</item>
+        <item name="android:minHeight">@dimen/button_height</item>
+        <item name="backgroundTint">@color/primary_container</item>
+        <item name="android:textColor">@color/on_primary_container</item>
+    </style>
+    
+    <style name="Widget.TaskFlow.Button.Icon" parent="Widget.Material3.Button.IconButton">
+        <item name="iconTint">@color/on_surface_variant</item>
+        <item name="android:minWidth">@dimen/touch_target_min</item>
+        <item name="android:minHeight">@dimen/touch_target_min</item>
+    </style>
+    
+    <style name="Widget.TaskFlow.Button.Icon.Filled" parent="Widget.Material3.Button.IconButton.Filled">
+        <item name="iconTint">@color/on_primary</item>
+        <item name="backgroundTint">@color/primary</item>
+    </style>
+    
+    <style name="Widget.TaskFlow.Button.Small" parent="Widget.TaskFlow.Button">
+        <item name="android:minHeight">@dimen/button_height_small</item>
+        <item name="android:paddingStart">@dimen/spacing_lg</item>
+        <item name="android:paddingEnd">@dimen/spacing_lg</item>
+        <item name="android:textAppearance">@style/TextAppearance.TaskFlow.Label.Medium</item>
+    </style>
+
+    <!-- ============================== -->
+    <!-- FAB STYLES                     -->
+    <!-- ============================== -->
+    
+    <style name="Widget.TaskFlow.FAB" parent="Widget.Material3.FloatingActionButton.Primary">
+        <item name="backgroundTint">@color/primary</item>
+        <item name="tint">@color/on_primary</item>
+        <item name="fabSize">normal</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.TaskFlow.Large</item>
+        <item name="elevation">@dimen/elevation_lg</item>
+    </style>
+    
+    <style name="Widget.TaskFlow.FAB.Extended" parent="Widget.Material3.ExtendedFloatingActionButton.Primary">
+        <item name="backgroundTint">@color/primary</item>
+        <item name="android:textColor">@color/on_primary</item>
+        <item name="iconTint">@color/on_primary</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.TaskFlow.Large</item>
+    </style>
+
+    <!-- ============================== -->
+    <!-- CHIP STYLES                    -->
+    <!-- ============================== -->
+    
+    <style name="Widget.TaskFlow.Chip" parent="Widget.Material3.Chip.Suggestion">
+        <item name="chipCornerRadius">@dimen/chip_corner_radius</item>
+        <item name="chipMinHeight">@dimen/chip_height</item>
+        <item name="chipStartPadding">@dimen/chip_padding_horizontal</item>
+        <item name="chipEndPadding">@dimen/chip_padding_horizontal</item>
+        <item name="chipBackgroundColor">@color/surface_container</item>
+        <item name="chipStrokeWidth">0dp</item>
+        <item name="android:textAppearance">@style/TextAppearance.TaskFlow.Label.Medium</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+    
+    <style name="Widget.TaskFlow.Chip.Filter" parent="Widget.Material3.Chip.Filter">
+        <item name="chipCornerRadius">@dimen/chip_corner_radius</item>
+        <item name="chipMinHeight">@dimen/chip_height</item>
+        <item name="chipBackgroundColor">@color/surface_container</item>
+        <item name="checkedIconVisible">true</item>
+    </style>
+    
+    <style name="Widget.TaskFlow.Chip.Input" parent="Widget.Material3.Chip.Input">
+        <item name="chipCornerRadius">@dimen/chip_corner_radius</item>
+        <item name="chipMinHeight">@dimen/chip_height</item>
+        <item name="closeIconVisible">true</item>
+    </style>
+    
+    <!-- Status Chips -->
+    <style name="Widget.TaskFlow.Chip.Status" parent="Widget.TaskFlow.Chip">
+        <item name="chipMinHeight">@dimen/chip_height_small</item>
+        <item name="chipStartPadding">@dimen/spacing_sm</item>
+        <item name="chipEndPadding">@dimen/spacing_sm</item>
+        <item name="android:textAppearance">@style/TextAppearance.TaskFlow.Label.Small</item>
+    </style>
+    
+    <style name="Widget.TaskFlow.Chip.Status.Todo" parent="Widget.TaskFlow.Chip.Status">
+        <item name="chipBackgroundColor">@color/status_todo_bg</item>
+        <item name="android:textColor">@color/status_todo</item>
+    </style>
+    
+    <style name="Widget.TaskFlow.Chip.Status.InProgress" parent="Widget.TaskFlow.Chip.Status">
+        <item name="chipBackgroundColor">@color/status_in_progress_bg</item>
+        <item name="android:textColor">@color/status_in_progress</item>
+    </style>
+    
+    <style name="Widget.TaskFlow.Chip.Status.Review" parent="Widget.TaskFlow.Chip.Status">
+        <item name="chipBackgroundColor">@color/status_review_bg</item>
+        <item name="android:textColor">@color/status_review</item>
+    </style>
+    
+    <style name="Widget.TaskFlow.Chip.Status.Done" parent="Widget.TaskFlow.Chip.Status">
+        <item name="chipBackgroundColor">@color/status_done_bg</item>
+        <item name="android:textColor">@color/status_done</item>
+    </style>
+    
+    <style name="Widget.TaskFlow.Chip.Status.Blocked" parent="Widget.TaskFlow.Chip.Status">
+        <item name="chipBackgroundColor">@color/status_blocked_bg</item>
+        <item name="android:textColor">@color/status_blocked</item>
+    </style>
+    
+    <!-- Priority Chips -->
+    <style name="Widget.TaskFlow.Chip.Priority" parent="Widget.TaskFlow.Chip.Status">
+    </style>
+    
+    <style name="Widget.TaskFlow.Chip.Priority.Urgent" parent="Widget.TaskFlow.Chip.Priority">
+        <item name="chipBackgroundColor">@color/priority_urgent_bg</item>
+        <item name="android:textColor">@color/priority_urgent</item>
+    </style>
+    
+    <style name="Widget.TaskFlow.Chip.Priority.High" parent="Widget.TaskFlow.Chip.Priority">
+        <item name="chipBackgroundColor">@color/priority_high_bg</item>
+        <item name="android:textColor">@color/priority_high</item>
+    </style>
+    
+    <style name="Widget.TaskFlow.Chip.Priority.Medium" parent="Widget.TaskFlow.Chip.Priority">
+        <item name="chipBackgroundColor">@color/priority_medium_bg</item>
+        <item name="android:textColor">@color/priority_medium</item>
+    </style>
+    
+    <style name="Widget.TaskFlow.Chip.Priority.Low" parent="Widget.TaskFlow.Chip.Priority">
+        <item name="chipBackgroundColor">@color/priority_low_bg</item>
+        <item name="android:textColor">@color/priority_low</item>
+    </style>
+
+    <!-- ============================== -->
+    <!-- TEXT INPUT STYLES              -->
+    <!-- ============================== -->
+    
+    <style name="Widget.TaskFlow.TextInputLayout" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="boxCornerRadiusTopStart">@dimen/text_field_corner_radius</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/text_field_corner_radius</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/text_field_corner_radius</item>
+        <item name="boxCornerRadiusBottomEnd">@dimen/text_field_corner_radius</item>
+        <item name="boxStrokeColor">@color/outline</item>
+        <item name="boxStrokeWidth">@dimen/stroke_regular</item>
+        <item name="boxStrokeWidthFocused">@dimen/stroke_thick</item>
+        <item name="hintTextColor">@color/text_secondary</item>
+    </style>
+    
+    <style name="Widget.TaskFlow.TextInputLayout.Filled" parent="Widget.Material3.TextInputLayout.FilledBox">
+        <item name="boxCornerRadiusTopStart">@dimen/text_field_corner_radius</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/text_field_corner_radius</item>
+        <item name="boxCornerRadiusBottomStart">0dp</item>
+        <item name="boxCornerRadiusBottomEnd">0dp</item>
+        <item name="boxBackgroundColor">@color/surface_container</item>
+    </style>
+    
+    <style name="Widget.TaskFlow.TextInputEditText" parent="Widget.Material3.TextInputEditText.OutlinedBox">
+        <item name="android:textAppearance">@style/TextAppearance.TaskFlow.Body.Large</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+
+    <!-- ============================== -->
+    <!-- BOTTOM SHEET STYLES            -->
+    <!-- ============================== -->
+    
+    <style name="Widget.TaskFlow.BottomSheet" parent="Widget.Material3.BottomSheet">
+        <item name="backgroundTint">@color/surface</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.TaskFlow.BottomSheet</item>
+    </style>
+    
+    <style name="Widget.TaskFlow.BottomSheet.Modal" parent="Widget.Material3.BottomSheet.Modal">
+        <item name="backgroundTint">@color/surface</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.TaskFlow.BottomSheet</item>
+        <item name="behavior_peekHeight">@dimen/bottom_sheet_peek_height</item>
+        <item name="behavior_hideable">true</item>
+        <item name="behavior_draggable">true</item>
+    </style>
+
+    <!-- ============================== -->
+    <!-- SNACKBAR STYLES                -->
+    <!-- ============================== -->
+    
+    <style name="Widget.TaskFlow.Snackbar" parent="Widget.Material3.Snackbar">
+        <item name="backgroundTint">@color/surface_container_highest</item>
+        <item name="actionTextColorAlpha">1.0</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.TaskFlow.Small</item>
+    </style>
+    
+    <style name="Widget.TaskFlow.Snackbar.TextView" parent="Widget.Material3.Snackbar.TextView">
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+
+    <!-- ============================== -->
+    <!-- BOTTOM NAVIGATION STYLES       -->
+    <!-- ============================== -->
+    
+    <style name="Widget.TaskFlow.BottomNavigation" parent="Widget.Material3.BottomNavigationView">
+        <item name="backgroundTint">@color/surface</item>
+        <item name="itemActiveIndicatorStyle">@style/Widget.TaskFlow.BottomNavigation.ActiveIndicator</item>
+        <item name="itemIconTint">@color/selector_bottom_nav_icon</item>
+        <item name="itemTextColor">@color/selector_bottom_nav_text</item>
+        <item name="labelVisibilityMode">labeled</item>
+        <item name="elevation">@dimen/elevation_lg</item>
+    </style>
+    
+    <style name="Widget.TaskFlow.BottomNavigation.ActiveIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/primary_container</item>
+    </style>
+
+    <!-- ============================== -->
+    <!-- TOP APP BAR STYLES             -->
+    <!-- ============================== -->
+    
+    <style name="Widget.TaskFlow.TopAppBar" parent="Widget.Material3.Toolbar">
+        <item name="titleTextAppearance">@style/TextAppearance.TaskFlow.Title.Large</item>
+        <item name="titleTextColor">@color/text_primary</item>
+        <item name="navigationIconTint">@color/text_primary</item>
+        <item name="android:background">@color/surface</item>
+    </style>
+    
+    <style name="Widget.TaskFlow.TopAppBar.Centered" parent="Widget.Material3.Toolbar">
+        <item name="titleTextAppearance">@style/TextAppearance.TaskFlow.Title.Large</item>
+        <item name="titleTextColor">@color/text_primary</item>
+        <item name="titleCentered">true</item>
+    </style>
+
+    <!-- ============================== -->
+    <!-- PROGRESS INDICATOR STYLES      -->
+    <!-- ============================== -->
+    
+    <style name="Widget.TaskFlow.ProgressIndicator.Linear" parent="Widget.Material3.LinearProgressIndicator">
+        <item name="trackThickness">@dimen/progress_bar_height</item>
+        <item name="trackCornerRadius">@dimen/radius_xs</item>
+        <item name="indicatorColor">@color/progress_indicator</item>
+        <item name="trackColor">@color/progress_track</item>
+    </style>
+    
+    <style name="Widget.TaskFlow.ProgressIndicator.Circular" parent="Widget.Material3.CircularProgressIndicator">
+        <item name="indicatorSize">@dimen/progress_circular_size</item>
+        <item name="indicatorColor">@color/progress_indicator</item>
+        <item name="trackColor">@color/progress_track</item>
+    </style>
+
+    <!-- ============================== -->
+    <!-- DIVIDER STYLE                  -->
+    <!-- ============================== -->
+    
+    <style name="Widget.TaskFlow.Divider" parent="Widget.Material3.MaterialDivider">
+        <item name="dividerColor">@color/outline_variant</item>
+        <item name="dividerThickness">@dimen/divider_height</item>
+    </style>
+
+    <!-- ============================== -->
+    <!-- MENU/POPUP STYLES              -->
+    <!-- ============================== -->
+    
+    <style name="Widget.TaskFlow.PopupMenu" parent="Widget.Material3.PopupMenu">
+        <item name="android:popupBackground">@drawable/bg_popup_menu</item>
+    </style>
+
+    <!-- ============================== -->
+    <!-- CHECKBOX & SWITCH STYLES       -->
+    <!-- ============================== -->
+    
+    <style name="Widget.TaskFlow.Checkbox" parent="Widget.Material3.CompoundButton.CheckBox">
+        <item name="buttonTint">@color/selector_checkbox</item>
+        <item name="android:minHeight">@dimen/touch_target_min</item>
+        <item name="android:minWidth">@dimen/touch_target_min</item>
+    </style>
+    
+    <style name="Widget.TaskFlow.Switch" parent="Widget.Material3.CompoundButton.MaterialSwitch">
+        <item name="thumbTint">@color/selector_switch_thumb</item>
+        <item name="trackTint">@color/selector_switch_track</item>
+    </style>
+
+    <!-- ============================== -->
+    <!-- TAB LAYOUT STYLES              -->
+    <!-- ============================== -->
+    
+    <style name="Widget.TaskFlow.TabLayout" parent="Widget.Material3.TabLayout">
+        <item name="tabIndicatorColor">@color/primary</item>
+        <item name="tabSelectedTextColor">@color/primary</item>
+        <item name="tabTextColor">@color/text_secondary</item>
+        <item name="tabRippleColor">@color/ripple_light</item>
+        <item name="tabIndicatorFullWidth">false</item>
+        <item name="tabIndicatorHeight">3dp</item>
+    </style>
+
+    <!-- ============================== -->
+    <!-- SEARCH VIEW STYLES             -->
+    <!-- ============================== -->
+    
+    <style name="Widget.TaskFlow.SearchView" parent="Widget.Material3.SearchView">
+        <item name="backgroundTint">@color/surface_container</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.TaskFlow.ExtraLarge</item>
+    </style>
+    
+    <style name="Widget.TaskFlow.SearchBar" parent="Widget.Material3.SearchBar">
+        <item name="backgroundTint">@color/surface_container</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.TaskFlow.ExtraLarge</item>
+    </style>
+
+    <!-- ============================== -->
+    <!-- AVATAR STYLES                  -->
+    <!-- ============================== -->
+    
+    <style name="Widget.TaskFlow.Avatar" parent="">
+        <item name="android:layout_width">@dimen/avatar_md</item>
+        <item name="android:layout_height">@dimen/avatar_md</item>
+        <item name="android:background">@drawable/bg_avatar</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textAppearance">@style/TextAppearance.TaskFlow.Label.Large</item>
+        <item name="android:textColor">@color/text_inverse</item>
+    </style>
+    
+    <style name="Widget.TaskFlow.Avatar.Small">
+        <item name="android:layout_width">@dimen/avatar_sm</item>
+        <item name="android:layout_height">@dimen/avatar_sm</item>
+        <item name="android:textAppearance">@style/TextAppearance.TaskFlow.Label.Small</item>
+    </style>
+    
+    <style name="Widget.TaskFlow.Avatar.Large">
+        <item name="android:layout_width">@dimen/avatar_lg</item>
+        <item name="android:layout_height">@dimen/avatar_lg</item>
+        <item name="android:textAppearance">@style/TextAppearance.TaskFlow.Title.Medium</item>
+    </style>
+
+    <!-- ============================== -->
+    <!-- SKELETON/SHIMMER STYLES        -->
+    <!-- ============================== -->
+    
+    <style name="Widget.TaskFlow.Skeleton" parent="">
+        <item name="android:background">@drawable/bg_skeleton</item>
+    </style>
+    
+    <style name="Widget.TaskFlow.Skeleton.Text">
+        <item name="android:layout_height">@dimen/skeleton_text_height</item>
+    </style>
+    
+    <style name="Widget.TaskFlow.Skeleton.Text.Small">
+        <item name="android:layout_height">@dimen/skeleton_text_height_small</item>
+    </style>
+    
+    <style name="Widget.TaskFlow.Skeleton.Circle">
+        <item name="android:background">@drawable/bg_skeleton_circle</item>
+    </style>
+
+</resources>

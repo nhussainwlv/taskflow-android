@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+   Backup rules for Android 11 and below.
+   Includes database and datastore preferences.
+-->
+<full-backup-content>
+    <include domain="database" path="taskflow_database" />
+    <include domain="sharedpref" path="." />
+</full-backup-content>

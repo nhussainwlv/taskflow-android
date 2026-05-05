@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+   App Shortcuts for quick actions from launcher.
+   Long-press on app icon to see these options.
+-->
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Quick Add Task Shortcut -->
+    <shortcut
+        android:shortcutId="quick_add_task"
+        android:enabled="true"
+        android:icon="@drawable/ic_shortcut_add"
+        android:shortcutShortLabel="@string/shortcut_quick_add_short"
+        android:shortcutLongLabel="@string/shortcut_quick_add_long">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.taskflow"
+            android:targetClass="com.taskflow.ui.MainActivity"
+            android:data="taskflow://task/new" />
+        <categories android:name="android.shortcut.conversation" />
+    </shortcut>
+
+    <!-- My Tasks Shortcut -->
+    <shortcut
+        android:shortcutId="my_tasks"
+        android:enabled="true"
+        android:icon="@drawable/ic_shortcut_tasks"
+        android:shortcutShortLabel="@string/shortcut_my_tasks_short"
+        android:shortcutLongLabel="@string/shortcut_my_tasks_long">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.taskflow"
+            android:targetClass="com.taskflow.ui.MainActivity"
+            android:data="taskflow://task/my-tasks" />
+        <categories android:name="android.shortcut.conversation" />
+    </shortcut>
+
+    <!-- Search Shortcut -->
+    <shortcut
+        android:shortcutId="search"
+        android:enabled="true"
+        android:icon="@drawable/ic_shortcut_search"
+        android:shortcutShortLabel="@string/shortcut_search_short"
+        android:shortcutLongLabel="@string/shortcut_search_long">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.taskflow"
+            android:targetClass="com.taskflow.ui.MainActivity"
+            android:data="taskflow://search" />
+        <categories android:name="android.shortcut.conversation" />
+    </shortcut>
+
+</shortcuts>

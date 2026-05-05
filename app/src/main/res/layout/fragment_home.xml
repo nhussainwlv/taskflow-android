@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+   Home/Dashboard Fragment Layout
+   Displays recent boards, today's tasks, upcoming deadlines, and quick actions.
+-->
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".ui.home.HomeFragment">
+
+    <!-- Top App Bar -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/surface"
+        app:elevation="0dp">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/app_bar_height"
+            app:layout_scrollFlags="scroll|enterAlways|snap">
+
+            <!-- Logo and App Name -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/ic_splash_logo"
+                    android:contentDescription="@string/app_name"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_sm"
+                    android:text="@string/app_name"
+                    android:textAppearance="@style/TextAppearance.TaskFlow.Title.Large"
+                    android:textColor="@color/primary"/>
+
+            </LinearLayout>
+
+        </com.google.android.material.appbar.MaterialToolbar>
+
+        <!-- Search Bar -->
+        <com.google.android.material.search.SearchBar
+            android:id="@+id/search_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/spacing_lg"
+            android:layout_marginBottom="@dimen/spacing_md"
+            android:hint="@string/search_hint"
+            app:navigationIcon="@drawable/ic_search"
+            style="@style/Widget.TaskFlow.SearchBar"/>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- Main Content -->
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingBottom="@dimen/spacing_xxl">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/spacing_lg">
+
+                <!-- Greeting Section -->
+                <LinearLayout
+                    android:id="@+id/greeting_section"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing_xl"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/text_greeting"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="@style/TextAppearance.TaskFlow.Headline.Medium"
+                            android:textColor="@color/text_primary"
+                            tools:text="Good morning"/>
+
+                        <TextView
+                            android:id="@+id/text_user_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_xxs"
+                            android:textAppearance="@style/TextAppearance.TaskFlow.Body.Large"
+                            android:textColor="@color/text_secondary"
+                            tools:text="Ready to be productive?"/>
+
+                    </LinearLayout>
+
+                    <!-- Profile Avatar -->
+                    <FrameLayout
+                        android:id="@+id/profile_button"
+                        android:layout_width="@dimen/avatar_lg"
+                        android:layout_height="@dimen/avatar_lg"
+                        android:background="@drawable/bg_avatar"
+                        android:backgroundTint="@color/avatar_6"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:contentDescription="@string/a11y_profile_button">
+
+                        <TextView
+                            android:id="@+id/text_avatar_initials"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:textAppearance="@style/TextAppearance.TaskFlow.Title.Medium"
+                            android:textColor="@color/text_inverse"
+                            tools:text="Y"/>
+
+                    </FrameLayout>
+
+                </LinearLayout>
+
+                <!-- Today's Focus Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/card_today_focus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing_lg"
+                    app:cardBackgroundColor="@color/primary"
+                    app:cardCornerRadius="@dimen/radius_lg"
+                    app:cardElevation="@dimen/elevation_sm">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/spacing_lg">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/home_today_focus"
+                            android:textAppearance="@style/TextAppearance.TaskFlow.Label.Medium"
+                            android:textColor="@color/primary_light"/>
+
+                        <TextView
+                            android:id="@+id/text_tasks_due_today"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_xs"
+                            android:textAppearance="@style/TextAppearance.TaskFlow.Headline.Small"
+                            android:textColor="@color/on_primary"
+                            tools:text="5 tasks due today"/>
+
+                        <LinearLayout
+                            android:id="@+id/overdue_warning"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_md"
+                            android:background="@drawable/bg_card"
+                            android:backgroundTint="#33FFFFFF"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:padding="@dimen/spacing_md"
+                            android:visibility="gone"
+                            tools:visibility="visible">
+
+                            <ImageView
+                                android:layout_width="@dimen/icon_md"
+                                android:layout_height="@dimen/icon_md"
+                                android:src="@drawable/ic_priority_urgent"
+                                android:tint="@color/warning_light"
+                                android:contentDescription="@null"/>
+
+                            <TextView
+                                android:id="@+id/text_overdue_count"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/spacing_sm"
+                                android:textAppearance="@style/TextAppearance.TaskFlow.Body.Medium"
+                                android:textColor="@color/on_primary"
+                                tools:text="2 overdue tasks need attention"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Quick Actions -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing_md"
+                    android:text="@string/home_quick_actions"
+                    android:textAppearance="@style/TextAppearance.TaskFlow.Title.Medium"
+                    android:textColor="@color/text_primary"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing_xl"
+                    android:orientation="horizontal">
+
+                    <!-- Quick Add Task -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/action_quick_add"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/spacing_sm"
+                        android:layout_weight="1"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:cardBackgroundColor="@color/success_container"
+                        app:cardCornerRadius="@dimen/radius_md"
+                        app:cardElevation="0dp"
+                        app:rippleColor="@color/ripple_light">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="@dimen/spacing_lg">
+
+                            <ImageView
+                                android:layout_width="@dimen/icon_xl"
+                                android:layout_height="@dimen/icon_xl"
+                                android:src="@drawable/ic_add"
+                                android:tint="@color/success"
+                                android:contentDescription="@null"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/spacing_sm"
+                                android:text="@string/board_add_task"
+                                android:textAppearance="@style/TextAppearance.TaskFlow.Label.Medium"
+                                android:textColor="@color/on_success_container"/>
+
+                        </LinearLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- My Tasks -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/action_my_tasks"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_sm"
+                        android:layout_weight="1"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:cardBackgroundColor="@color/info_container"
+                        app:cardCornerRadius="@dimen/radius_md"
+                        app:cardElevation="0dp"
+                        app:rippleColor="@color/ripple_light">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="@dimen/spacing_lg">
+
+                            <ImageView
+                                android:layout_width="@dimen/icon_xl"
+                                android:layout_height="@dimen/icon_xl"
+                                android:src="@drawable/ic_shortcut_tasks"
+                                android:tint="@color/info"
+                                android:contentDescription="@null"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/spacing_sm"
+                                android:text="@string/home_my_tasks"
+                                android:textAppearance="@style/TextAppearance.TaskFlow.Label.Medium"
+                                android:textColor="@color/on_info_container"/>
+
+                        </LinearLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                </LinearLayout>
+
+                <!-- Recent Boards Section -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing_md"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/home_recent_boards"
+                        android:textAppearance="@style/TextAppearance.TaskFlow.Title.Medium"
+                        android:textColor="@color/text_primary"/>
+
+                    <TextView
+                        android:id="@+id/btn_view_all_boards"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/spacing_sm"
+                        android:text="@string/home_view_all"
+                        android:textAppearance="@style/TextAppearance.TaskFlow.Label.Medium"
+                        android:textColor="@color/primary"/>
+
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_recent_boards"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing_xl"
+                    android:clipToPadding="false"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:itemCount="3"
+                    tools:listitem="@layout/item_board_card"/>
+
+                <!-- Upcoming Deadlines Section -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing_md"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/home_upcoming_deadlines"
+                        android:textAppearance="@style/TextAppearance.TaskFlow.Title.Medium"
+                        android:textColor="@color/text_primary"/>
+
+                    <TextView
+                        android:id="@+id/btn_view_all_tasks"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/spacing_sm"
+                        android:text="@string/home_view_all"
+                        android:textAppearance="@style/TextAppearance.TaskFlow.Label.Medium"
+                        android:textColor="@color/primary"/>
+
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_upcoming_tasks"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:itemCount="5"
+                    tools:listitem="@layout/item_task_compact"/>
+
+                <!-- Empty State -->
+                <include
+                    android:id="@+id/empty_state"
+                    layout="@layout/view_empty_state"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"/>
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

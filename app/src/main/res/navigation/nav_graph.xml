@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+   TaskFlow Navigation Graph
+   Single-activity, multi-fragment architecture using Jetpack Navigation.
+-->
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <!-- ============================== -->
+    <!-- HOME DESTINATION               -->
+    <!-- ============================== -->
+    
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.taskflow.ui.home.HomeFragment"
+        android:label="@string/nav_home"
+        tools:layout="@layout/fragment_home">
+        
+        <action
+            android:id="@+id/action_home_to_board"
+            app:destination="@id/boardFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        
+        <action
+            android:id="@+id/action_home_to_search"
+            app:destination="@id/searchFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out"/>
+            
+    </fragment>
+
+    <!-- ============================== -->
+    <!-- BOARD/KANBAN DESTINATION       -->
+    <!-- ============================== -->
+    
+    <fragment
+        android:id="@+id/boardFragment"
+        android:name="com.taskflow.ui.board.BoardFragment"
+        android:label="@string/nav_board"
+        tools:layout="@layout/fragment_board">
+        
+        <argument
+            android:name="boardId"
+            app:argType="long"
+            android:defaultValue="1L"/>
+        
+        <action
+            android:id="@+id/action_board_to_taskDetail"
+            app:destination="@id/taskDetailBottomSheet"/>
+            
+        <deepLink
+            android:id="@+id/deeplink_board"
+            app:uri="taskflow://board/{boardId}"/>
+            
+    </fragment>
+
+    <!-- ============================== -->
+    <!-- LIST DESTINATION               -->
+    <!-- ============================== -->
+    
+    <fragment
+        android:id="@+id/listFragment"
+        android:name="com.taskflow.ui.list.ListFragment"
+        android:label="@string/nav_list"
+        tools:layout="@layout/fragment_list">
+        
+        <argument
+            android:name="boardId"
+            app:argType="long"
+            android:defaultValue="1L"/>
+        
+        <action
+            android:id="@+id/action_list_to_taskDetail"
+            app:destination="@id/taskDetailBottomSheet"/>
+            
+    </fragment>
+
+    <!-- ============================== -->
+    <!-- CALENDAR DESTINATION           -->
+    <!-- ============================== -->
+    
+    <fragment
+        android:id="@+id/calendarFragment"
+        android:name="com.taskflow.ui.calendar.CalendarFragment"
+        android:label="@string/nav_calendar"
+        tools:layout="@layout/fragment_calendar">
+        
+        <action
+            android:id="@+id/action_calendar_to_taskDetail"
+            app:destination="@id/taskDetailBottomSheet"/>
+            
+    </fragment>
+
+    <!-- ============================== -->
+    <!-- TIMELINE DESTINATION           -->
+    <!-- ============================== -->
+    
+    <fragment
+        android:id="@+id/timelineFragment"
+        android:name="com.taskflow.ui.timeline.TimelineFragment"
+        android:label="@string/nav_timeline"
+        tools:layout="@layout/fragment_timeline">
+        
+        <argument
+            android:name="boardId"
+            app:argType="long"
+            android:defaultValue="1L"/>
+        
+        <action
+            android:id="@+id/action_timeline_to_taskDetail"
+            app:destination="@id/taskDetailBottomSheet"/>
+            
+    </fragment>
+
+    <!-- ============================== -->
+    <!-- SEARCH DESTINATION             -->
+    <!-- ============================== -->
+    
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.taskflow.ui.search.SearchFragment"
+        android:label="@string/action_search"
+        tools:layout="@layout/fragment_search">
+        
+        <action
+            android:id="@+id/action_search_to_taskDetail"
+            app:destination="@id/taskDetailBottomSheet"/>
+            
+        <deepLink
+            android:id="@+id/deeplink_search"
+            app:uri="taskflow://search"/>
+            
+    </fragment>
+
+    <!-- ============================== -->
+    <!-- SETTINGS DESTINATION           -->
+    <!-- ============================== -->
+    
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.taskflow.ui.settings.SettingsFragment"
+        android:label="@string/nav_settings"
+        tools:layout="@layout/fragment_settings"/>
+
+    <!-- ============================== -->
+    <!-- TASK DETAIL BOTTOM SHEET       -->
+    <!-- ============================== -->
+    
+    <dialog
+        android:id="@+id/taskDetailBottomSheet"
+        android:name="com.taskflow.ui.detail.TaskDetailBottomSheet"
+        android:label="Task Details"
+        tools:layout="@layout/bottom_sheet_task_detail">
+        
+        <argument
+            android:name="taskId"
+            app:argType="long"
+            android:defaultValue="-1L"/>
+            
+        <deepLink
+            android:id="@+id/deeplink_task"
+            app:uri="taskflow://task/{taskId}"/>
+            
+    </dialog>
+
+    <!-- ============================== -->
+    <!-- QUICK ADD BOTTOM SHEET         -->
+    <!-- ============================== -->
+    
+    <dialog
+        android:id="@+id/quickAddBottomSheet"
+        android:name="com.taskflow.ui.detail.QuickAddBottomSheet"
+        android:label="Quick Add"
+        tools:layout="@layout/bottom_sheet_quick_add">
+        
+        <argument
+            android:name="columnId"
+            app:argType="long"
+            android:defaultValue="-1L"/>
+            
+        <deepLink
+            android:id="@+id/deeplink_new_task"
+            app:uri="taskflow://task/new"/>
+            
+    </dialog>
+
+</navigation>

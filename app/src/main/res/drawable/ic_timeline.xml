@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+   Timeline navigation icon (Gantt chart style)
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    
+    <path
+        android:fillColor="@color/text_secondary"
+        android:pathData="M2,5h8v3H2zM6,9h12v3H6zM4,13h10v3H4zM8,17h10v3H8z"/>
+    
+</vector>

@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+   List View Fragment Layout
+   Displays tasks in a vertical list with multi-select, sorting, and filtering.
+-->
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".ui.list.ListFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/surface">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="@string/nav_list">
+
+            <!-- Search button -->
+            <ImageButton
+                android:id="@+id/btn_search"
+                android:layout_width="@dimen/touch_target_min"
+                android:layout_height="@dimen/touch_target_min"
+                android:layout_gravity="end"
+                android:layout_marginEnd="@dimen/spacing_sm"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_search"
+                android:contentDescription="@string/action_search"/>
+
+        </com.google.android.material.appbar.MaterialToolbar>
+
+        <!-- Filter Chips Row -->
+        <HorizontalScrollView
+            android:id="@+id/scroll_filter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none">
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chip_group_filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/spacing_lg"
+                android:paddingVertical="@dimen/spacing_xs"
+                app:singleLine="true"
+                app:singleSelection="true">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_filter_all"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:tag="all"
+                    android:text="@string/list_select_all"
+                    android:checked="true"
+                    style="@style/Widget.TaskFlow.Chip.Filter"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_filter_active"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:tag="active"
+                    android:text="Active"
+                    style="@style/Widget.TaskFlow.Chip.Filter"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_filter_completed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:tag="completed"
+                    android:text="@string/status_done"
+                    style="@style/Widget.TaskFlow.Chip.Filter"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_filter_today"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:tag="today"
+                    android:text="@string/date_today"
+                    style="@style/Widget.TaskFlow.Chip.Filter"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_filter_overdue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:tag="overdue"
+                    android:text="@string/date_overdue"
+                    style="@style/Widget.TaskFlow.Chip.Filter"/>
+
+            </com.google.android.material.chip.ChipGroup>
+
+        </HorizontalScrollView>
+
+        <!-- Sort Chips Row -->
+        <HorizontalScrollView
+            android:id="@+id/scroll_sort"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none">
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chip_group_sort"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/spacing_lg"
+                android:paddingVertical="@dimen/spacing_xs"
+                app:singleLine="true"
+                app:singleSelection="true">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_sort_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:tag="date"
+                    android:text="@string/sort_due_date_asc"
+                    android:checked="true"
+                    app:chipIcon="@drawable/ic_sort"
+                    style="@style/Widget.TaskFlow.Chip.Filter"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_sort_priority"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:tag="priority"
+                    android:text="@string/sort_priority_high"
+                    app:chipIcon="@drawable/ic_sort"
+                    style="@style/Widget.TaskFlow.Chip.Filter"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_sort_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:tag="name"
+                    android:text="@string/sort_alphabetical_az"
+                    app:chipIcon="@drawable/ic_sort"
+                    style="@style/Widget.TaskFlow.Chip.Filter"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_sort_created"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:tag="created"
+                    android:text="@string/sort_created_newest"
+                    app:chipIcon="@drawable/ic_sort"
+                    style="@style/Widget.TaskFlow.Chip.Filter"/>
+
+            </com.google.android.material.chip.ChipGroup>
+
+        </HorizontalScrollView>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_tasks"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingTop="@dimen/spacing_sm"
+            android:paddingBottom="@dimen/spacing_huge"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_task_list"/>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <!-- Empty State -->
+    <include
+        android:id="@+id/empty_state"
+        layout="@layout/view_empty_state"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+    <!-- Loading Indicator -->
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/progress_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:indeterminate="true"
+        android:visibility="gone"/>
+
+    <!-- FAB for adding tasks -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@drawable/ic_add"
+        android:contentDescription="@string/a11y_add_button"
+        app:backgroundTint="@color/primary"
+        app:tint="@color/on_primary"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

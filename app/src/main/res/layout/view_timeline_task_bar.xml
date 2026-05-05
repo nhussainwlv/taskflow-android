@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+   Timeline Task Bar
+   Individual task bar displayed in the timeline view.
+-->
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="@dimen/timeline_bar_height"
+    android:background="@drawable/bg_timeline_bar"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground">
+
+    <!-- Progress overlay (shown from left based on progress %) -->
+    <View
+        android:id="@+id/progress_overlay"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:alpha="0.3"
+        android:background="@color/surface"
+        android:visibility="gone"/>
+
+    <!-- Task title -->
+    <TextView
+        android:id="@+id/text_task_title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:maxLines="1"
+        android:paddingHorizontal="@dimen/spacing_sm"
+        android:textAppearance="@style/TextAppearance.TaskFlow.Label.Small"
+        android:textColor="@color/text_inverse"
+        tools:text="Design review meeting"/>
+
+</FrameLayout>

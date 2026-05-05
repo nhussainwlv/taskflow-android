@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+   TaskFlow Dark Theme Colors
+   Optimized for OLED screens and reduced eye strain.
+   WCAG AA compliant contrast ratios maintained.
+-->
+<resources>
+
+    <!-- ============================== -->
+    <!-- PRIMARY BRAND COLORS (DARK)    -->
+    <!-- ============================== -->
+    
+    <color name="primary">#818CF8</color>
+    <color name="primary_dark">#6366F1</color>
+    <color name="primary_light">#A5B4FC</color>
+    <color name="primary_container">#312E81</color>
+    <color name="on_primary">#1E1B4B</color>
+    <color name="on_primary_container">#E0E7FF</color>
+    
+    <color name="secondary">#94A3B8</color>
+    <color name="secondary_dark">#64748B</color>
+    <color name="secondary_light">#CBD5E1</color>
+    <color name="secondary_container">#334155</color>
+    <color name="on_secondary">#0F172A</color>
+    <color name="on_secondary_container">#E2E8F0</color>
+    
+    <color name="tertiary">#2DD4BF</color>
+    <color name="tertiary_dark">#14B8A6</color>
+    <color name="tertiary_light">#5EEAD4</color>
+    <color name="tertiary_container">#134E4A</color>
+    <color name="on_tertiary">#042F2E</color>
+    <color name="on_tertiary_container">#CCFBF1</color>
+
+    <!-- ============================== -->
+    <!-- SEMANTIC COLORS (DARK)         -->
+    <!-- ============================== -->
+    
+    <color name="success">#4ADE80</color>
+    <color name="success_dark">#22C55E</color>
+    <color name="success_light">#86EFAC</color>
+    <color name="success_container">#14532D</color>
+    <color name="on_success">#052E16</color>
+    <color name="on_success_container">#DCFCE7</color>
+    
+    <color name="warning">#FBBF24</color>
+    <color name="warning_dark">#F59E0B</color>
+    <color name="warning_light">#FCD34D</color>
+    <color name="warning_container">#78350F</color>
+    <color name="on_warning">#422006</color>
+    <color name="on_warning_container">#FEF3C7</color>
+    
+    <color name="danger">#F87171</color>
+    <color name="danger_dark">#EF4444</color>
+    <color name="danger_light">#FCA5A5</color>
+    <color name="danger_container">#7F1D1D</color>
+    <color name="on_danger">#450A0A</color>
+    <color name="on_danger_container">#FEE2E2</color>
+    
+    <color name="info">#22D3EE</color>
+    <color name="info_dark">#06B6D4</color>
+    <color name="info_light">#67E8F9</color>
+    <color name="info_container">#164E63</color>
+    <color name="on_info">#083344</color>
+    <color name="on_info_container">#CFFAFE</color>
+
+    <!-- ============================== -->
+    <!-- NEUTRAL COLORS - DARK THEME    -->
+    <!-- ============================== -->
+    
+    <color name="text_primary">#F1F5F9</color>
+    <color name="text_secondary">#94A3B8</color>
+    <color name="text_tertiary">#64748B</color>
+    <color name="text_disabled">#475569</color>
+    <color name="text_inverse">#0B1220</color>
+    
+    <color name="surface">#0F172A</color>
+    <color name="surface_dim">#0B1220</color>
+    <color name="surface_variant">#1E293B</color>
+    <color name="surface_container">#1E293B</color>
+    <color name="surface_container_high">#334155</color>
+    <color name="surface_container_highest">#475569</color>
+    
+    <color name="background">#0B1220</color>
+    <color name="on_background">#F1F5F9</color>
+    <color name="on_surface">#F1F5F9</color>
+    <color name="on_surface_variant">#94A3B8</color>
+    
+    <color name="outline">#475569</color>
+    <color name="outline_variant">#334155</color>
+    
+    <color name="scrim">#000000</color>
+    <color name="overlay">#000000CC</color>
+
+    <!-- ============================== -->
+    <!-- PRIORITY COLORS (DARK)         -->
+    <!-- ============================== -->
+    
+    <color name="priority_urgent">#F87171</color>
+    <color name="priority_high">#FB923C</color>
+    <color name="priority_medium">#FBBF24</color>
+    <color name="priority_low">#4ADE80</color>
+    <color name="priority_none">#64748B</color>
+    
+    <color name="priority_urgent_bg">#450A0A</color>
+    <color name="priority_high_bg">#431407</color>
+    <color name="priority_medium_bg">#422006</color>
+    <color name="priority_low_bg">#052E16</color>
+    <color name="priority_none_bg">#1E293B</color>
+
+    <!-- ============================== -->
+    <!-- STATUS COLORS (DARK)           -->
+    <!-- ============================== -->
+    
+    <color name="status_todo">#94A3B8</color>
+    <color name="status_todo_bg">#1E293B</color>
+    
+    <color name="status_in_progress">#60A5FA</color>
+    <color name="status_in_progress_bg">#1E3A5F</color>
+    
+    <color name="status_review">#A78BFA</color>
+    <color name="status_review_bg">#2E1065</color>
+    
+    <color name="status_done">#4ADE80</color>
+    <color name="status_done_bg">#052E16</color>
+    
+    <color name="status_blocked">#F87171</color>
+    <color name="status_blocked_bg">#450A0A</color>
+
+    <!-- ============================== -->
+    <!-- TAG COLORS (DARK)              -->
+    <!-- ============================== -->
+    
+    <color name="tag_red">#F87171</color>
+    <color name="tag_red_bg">#450A0A</color>
+    
+    <color name="tag_orange">#FB923C</color>
+    <color name="tag_orange_bg">#431407</color>
+    
+    <color name="tag_amber">#FBBF24</color>
+    <color name="tag_amber_bg">#422006</color>
+    
+    <color name="tag_lime">#A3E635</color>
+    <color name="tag_lime_bg">#1A2E05</color>
+    
+    <color name="tag_green">#4ADE80</color>
+    <color name="tag_green_bg">#052E16</color>
+    
+    <color name="tag_teal">#2DD4BF</color>
+    <color name="tag_teal_bg">#042F2E</color>
+    
+    <color name="tag_cyan">#22D3EE</color>
+    <color name="tag_cyan_bg">#083344</color>
+    
+    <color name="tag_blue">#60A5FA</color>
+    <color name="tag_blue_bg">#1E3A5F</color>
+    
+    <color name="tag_indigo">#818CF8</color>
+    <color name="tag_indigo_bg">#312E81</color>
+    
+    <color name="tag_purple">#C084FC</color>
+    <color name="tag_purple_bg">#3B0764</color>
+    
+    <color name="tag_pink">#F472B6</color>
+    <color name="tag_pink_bg">#500724</color>
+    
+    <color name="tag_gray">#9CA3AF</color>
+    <color name="tag_gray_bg">#1F2937</color>
+
+    <!-- ============================== -->
+    <!-- GRADIENT COLORS (DARK)         -->
+    <!-- ============================== -->
+    
+    <color name="gradient_primary_start">#6366F1</color>
+    <color name="gradient_primary_end">#8B5CF6</color>
+    
+    <color name="gradient_success_start">#22C55E</color>
+    <color name="gradient_success_end">#14B8A6</color>
+    
+    <color name="gradient_warm_start">#F59E0B</color>
+    <color name="gradient_warm_end">#EF4444</color>
+
+    <!-- ============================== -->
+    <!-- RIPPLE AND INTERACTION (DARK)  -->
+    <!-- ============================== -->
+    
+    <color name="ripple_light">#33818CF8</color>
+    <color name="ripple_dark">#4D818CF8</color>
+    <color name="highlight">#1A818CF8</color>
+    
+    <color name="selected_background">#312E81</color>
+    <color name="focused_outline">#818CF8</color>
+    <color name="pressed_overlay">#1AFFFFFF</color>
+
+    <!-- ============================== -->
+    <!-- AVATAR COLORS (DARK)           -->
+    <!-- ============================== -->
+    
+    <color name="avatar_1">#F87171</color>
+    <color name="avatar_2">#FB923C</color>
+    <color name="avatar_3">#FACC15</color>
+    <color name="avatar_4">#4ADE80</color>
+    <color name="avatar_5">#22D3EE</color>
+    <color name="avatar_6">#60A5FA</color>
+    <color name="avatar_7">#A78BFA</color>
+    <color name="avatar_8">#F472B6</color>
+
+    <!-- ============================== -->
+    <!-- PROGRESS BAR COLORS (DARK)     -->
+    <!-- ============================== -->
+    
+    <color name="progress_track">#334155</color>
+    <color name="progress_indicator">#818CF8</color>
+    <color name="progress_complete">#4ADE80</color>
+    <color name="progress_overdue">#F87171</color>
+
+    <!-- ============================== -->
+    <!-- CALENDAR COLORS (DARK)         -->
+    <!-- ============================== -->
+    
+    <color name="calendar_today">#818CF8</color>
+    <color name="calendar_selected">#312E81</color>
+    <color name="calendar_weekend">#64748B</color>
+    <color name="calendar_other_month">#475569</color>
+
+    <!-- ============================== -->
+    <!-- SKELETON/SHIMMER (DARK)        -->
+    <!-- ============================== -->
+    
+    <color name="skeleton_base">#334155</color>
+    <color name="skeleton_highlight">#475569</color>
+
+</resources>

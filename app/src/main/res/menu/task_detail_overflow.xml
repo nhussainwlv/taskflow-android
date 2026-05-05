@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_share_task"
+        android:title="@string/task_share"/>
+    <item
+        android:id="@+id/action_duplicate_task"
+        android:title="@string/action_duplicate_task"/>
+    <item
+        android:id="@+id/action_archive_task"
+        android:title="@string/action_archive_task"/>
+    <item
+        android:id="@+id/action_delete_task"
+        android:title="@string/action_delete_task"/>
+</menu>

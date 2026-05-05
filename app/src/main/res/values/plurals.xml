@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+   Plural strings for quantity-based text.
+-->
+<resources>
+
+    <plurals name="tasks_due_today_plural">
+        <item quantity="zero">No tasks due today</item>
+        <item quantity="one">1 task due today</item>
+        <item quantity="other">%d tasks due today</item>
+    </plurals>
+
+    <plurals name="tasks_count_plural">
+        <item quantity="zero">No tasks</item>
+        <item quantity="one">1 task</item>
+        <item quantity="other">%d tasks</item>
+    </plurals>
+
+    <plurals name="items_selected_plural">
+        <item quantity="one">1 selected</item>
+        <item quantity="other">%d selected</item>
+    </plurals>
+
+    <plurals name="overdue_tasks_plural">
+        <item quantity="one">1 overdue task</item>
+        <item quantity="other">%d overdue tasks</item>
+    </plurals>
+
+    <plurals name="tasks_deleted">
+        <item quantity="one">1 task deleted</item>
+        <item quantity="other">%d tasks deleted</item>
+    </plurals>
+
+    <plurals name="tasks_completed">
+        <item quantity="one">1 task completed</item>
+        <item quantity="other">%d tasks completed</item>
+    </plurals>
+
+    <plurals name="notification_tasks_due_today">
+        <item quantity="one">You have 1 task due today</item>
+        <item quantity="other">You have %d tasks due today</item>
+    </plurals>
+
+    <plurals name="notification_tasks_overdue">
+        <item quantity="one">1 task is overdue</item>
+        <item quantity="other">%d tasks are overdue</item>
+    </plurals>
+
+</resources>

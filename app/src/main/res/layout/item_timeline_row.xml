@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+   Timeline Row Item Layout
+   Displays a row with group name header and container for task bars.
+-->
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="@dimen/timeline_row_height">
+
+    <!-- Row Background (for alternating colors) -->
+    <View
+        android:id="@+id/row_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/surface"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:minHeight="@dimen/timeline_row_height">
+
+        <!-- Fixed Group Name Header -->
+        <TextView
+            android:id="@+id/text_group_name"
+            android:layout_width="@dimen/timeline_header_width"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="@dimen/spacing_md"
+            android:background="@color/surface"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textAppearance="@style/TextAppearance.TaskFlow.Label.Medium"
+            android:textColor="@color/text_primary"
+            tools:text="Alex Chen"/>
+
+        <!-- Divider between header and bars -->
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/outline_variant"/>
+
+        <!-- Container for Task Bars (will be positioned programmatically) -->
+        <LinearLayout
+            android:id="@+id/container_task_bars"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:minWidth="1000dp"
+            android:paddingVertical="@dimen/spacing_xs">
+            <!-- Task bars will be added programmatically -->
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

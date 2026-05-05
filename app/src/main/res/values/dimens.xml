@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+   TaskFlow Dimension Resources
+   8dp grid system for consistent spacing.
+   Follows Material Design 3 guidelines.
+-->
+<resources>
+
+    <!-- ============================== -->
+    <!-- SPACING SCALE (8dp grid)       -->
+    <!-- ============================== -->
+    
+    <dimen name="spacing_none">0dp</dimen>
+    <dimen name="spacing_xxs">2dp</dimen>
+    <dimen name="spacing_xs">4dp</dimen>
+    <dimen name="spacing_sm">8dp</dimen>
+    <dimen name="spacing_md">12dp</dimen>
+    <dimen name="spacing_lg">16dp</dimen>
+    <dimen name="spacing_xl">24dp</dimen>
+    <dimen name="spacing_xxl">32dp</dimen>
+    <dimen name="spacing_xxxl">48dp</dimen>
+    <dimen name="spacing_huge">64dp</dimen>
+
+    <!-- ============================== -->
+    <!-- CORNER RADII                   -->
+    <!-- ============================== -->
+    
+    <dimen name="radius_none">0dp</dimen>
+    <dimen name="radius_xxs">2dp</dimen>
+    <dimen name="radius_xs">4dp</dimen>
+    <dimen name="radius_sm">8dp</dimen>
+    <dimen name="radius_md">12dp</dimen>
+    <dimen name="radius_lg">16dp</dimen>
+    <dimen name="radius_xl">24dp</dimen>
+    <dimen name="radius_xxl">32dp</dimen>
+    <dimen name="radius_full">9999dp</dimen>
+
+    <!-- ============================== -->
+    <!-- ELEVATION                      -->
+    <!-- ============================== -->
+    
+    <dimen name="elevation_none">0dp</dimen>
+    <dimen name="elevation_xs">1dp</dimen>
+    <dimen name="elevation_sm">2dp</dimen>
+    <dimen name="elevation_md">4dp</dimen>
+    <dimen name="elevation_lg">8dp</dimen>
+    <dimen name="elevation_xl">12dp</dimen>
+    <dimen name="elevation_xxl">16dp</dimen>
+
+    <!-- ============================== -->
+    <!-- BORDER/STROKE WIDTHS           -->
+    <!-- ============================== -->
+    
+    <dimen name="stroke_thin">0.5dp</dimen>
+    <dimen name="stroke_regular">1dp</dimen>
+    <dimen name="stroke_medium">1.5dp</dimen>
+    <dimen name="stroke_thick">2dp</dimen>
+    <dimen name="stroke_bold">3dp</dimen>
+
+    <!-- ============================== -->
+    <!-- ICON SIZES                     -->
+    <!-- ============================== -->
+    
+    <dimen name="icon_xs">12dp</dimen>
+    <dimen name="icon_sm">16dp</dimen>
+    <dimen name="icon_md">20dp</dimen>
+    <dimen name="icon_lg">24dp</dimen>
+    <dimen name="icon_xl">32dp</dimen>
+    <dimen name="icon_xxl">48dp</dimen>
+    <dimen name="icon_huge">64dp</dimen>
+
+    <!-- ============================== -->
+    <!-- TOUCH TARGETS                  -->
+    <!-- ============================== -->
+    
+    <!-- Minimum touch target per accessibility guidelines -->
+    <dimen name="touch_target_min">48dp</dimen>
+    <dimen name="touch_target_comfortable">56dp</dimen>
+    <dimen name="touch_target_large">64dp</dimen>
+
+    <!-- ============================== -->
+    <!-- TYPOGRAPHY SIZES               -->
+    <!-- ============================== -->
+    
+    <!-- Display -->
+    <dimen name="text_display_large">57sp</dimen>
+    <dimen name="text_display_medium">45sp</dimen>
+    <dimen name="text_display_small">36sp</dimen>
+    
+    <!-- Headline -->
+    <dimen name="text_headline_large">32sp</dimen>
+    <dimen name="text_headline_medium">28sp</dimen>
+    <dimen name="text_headline_small">24sp</dimen>
+    
+    <!-- Title -->
+    <dimen name="text_title_large">22sp</dimen>
+    <dimen name="text_title_medium">16sp</dimen>
+    <dimen name="text_title_small">14sp</dimen>
+    
+    <!-- Body -->
+    <dimen name="text_body_large">16sp</dimen>
+    <dimen name="text_body_medium">14sp</dimen>
+    <dimen name="text_body_small">12sp</dimen>
+    
+    <!-- Label -->
+    <dimen name="text_label_large">14sp</dimen>
+    <dimen name="text_label_medium">12sp</dimen>
+    <dimen name="text_label_small">11sp</dimen>
+
+    <!-- ============================== -->
+    <!-- COMPONENT SPECIFIC             -->
+    <!-- ============================== -->
+    
+    <!-- App Bar -->
+    <dimen name="app_bar_height">64dp</dimen>
+    <dimen name="app_bar_expanded_height">152dp</dimen>
+    
+    <!-- Bottom Navigation -->
+    <dimen name="bottom_nav_height">80dp</dimen>
+    
+    <!-- FAB -->
+    <dimen name="fab_size">56dp</dimen>
+    <dimen name="fab_mini_size">40dp</dimen>
+    <dimen name="fab_extended_height">56dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    
+    <!-- Cards -->
+    <dimen name="card_padding">16dp</dimen>
+    <dimen name="card_corner_radius">12dp</dimen>
+    <dimen name="card_elevation">2dp</dimen>
+    <dimen name="card_min_height">72dp</dimen>
+    <dimen name="card_stroke_selected">2dp</dimen>
+    
+    <!-- Task Card (Kanban) -->
+    <dimen name="task_card_width">280dp</dimen>
+    <dimen name="task_card_min_height">80dp</dimen>
+    <dimen name="task_card_margin">8dp</dimen>
+    
+    <!-- Column (Kanban) -->
+    <dimen name="column_width">300dp</dimen>
+    <dimen name="column_header_height">48dp</dimen>
+    <dimen name="column_spacing">12dp</dimen>
+    
+    <!-- List Items -->
+    <dimen name="list_item_height">72dp</dimen>
+    <dimen name="list_item_single_line_height">56dp</dimen>
+    <dimen name="list_item_padding_horizontal">16dp</dimen>
+    <dimen name="list_item_padding_vertical">12dp</dimen>
+    
+    <!-- Avatars -->
+    <dimen name="avatar_xs">24dp</dimen>
+    <dimen name="avatar_sm">32dp</dimen>
+    <dimen name="avatar_md">40dp</dimen>
+    <dimen name="avatar_lg">56dp</dimen>
+    <dimen name="avatar_xl">72dp</dimen>
+    <dimen name="avatar_overlap">-8dp</dimen>
+    
+    <!-- Chips -->
+    <dimen name="chip_height">32dp</dimen>
+    <dimen name="chip_height_small">24dp</dimen>
+    <dimen name="chip_corner_radius">16dp</dimen>
+    <dimen name="chip_icon_size">18dp</dimen>
+    <dimen name="chip_padding_horizontal">12dp</dimen>
+    <dimen name="chip_spacing">8dp</dimen>
+    
+    <!-- Buttons -->
+    <dimen name="button_height">48dp</dimen>
+    <dimen name="button_height_small">36dp</dimen>
+    <dimen name="button_min_width">64dp</dimen>
+    <dimen name="button_corner_radius">24dp</dimen>
+    <dimen name="button_padding_horizontal">24dp</dimen>
+    <dimen name="button_icon_size">18dp</dimen>
+    
+    <!-- Text Fields -->
+    <dimen name="text_field_height">56dp</dimen>
+    <dimen name="text_field_corner_radius">8dp</dimen>
+    <dimen name="text_field_padding">16dp</dimen>
+    
+    <!-- Bottom Sheet -->
+    <dimen name="bottom_sheet_corner_radius">24dp</dimen>
+    <dimen name="bottom_sheet_handle_width">32dp</dimen>
+    <dimen name="bottom_sheet_handle_height">4dp</dimen>
+    <dimen name="bottom_sheet_peek_height">320dp</dimen>
+    
+    <!-- Dialog -->
+    <dimen name="dialog_corner_radius">28dp</dimen>
+    <dimen name="dialog_padding">24dp</dimen>
+    <dimen name="dialog_min_width">280dp</dimen>
+    <dimen name="dialog_max_width">560dp</dimen>
+    
+    <!-- Progress Indicators -->
+    <dimen name="progress_bar_height">4dp</dimen>
+    <dimen name="progress_bar_height_thick">8dp</dimen>
+    <dimen name="progress_circular_size">48dp</dimen>
+    <dimen name="progress_circular_size_small">24dp</dimen>
+    
+    <!-- Timeline -->
+    <dimen name="timeline_row_height">48dp</dimen>
+    <dimen name="timeline_header_width">200dp</dimen>
+    <dimen name="timeline_bar_height">24dp</dimen>
+    <dimen name="timeline_bar_corner_radius">4dp</dimen>
+    <dimen name="timeline_day_width">40dp</dimen>
+    
+    <!-- Calendar -->
+    <dimen name="calendar_day_size">40dp</dimen>
+    <dimen name="calendar_task_chip_height">20dp</dimen>
+    
+    <!-- Skeleton/Shimmer -->
+    <dimen name="skeleton_text_height">16dp</dimen>
+    <dimen name="skeleton_text_height_small">12dp</dimen>
+    
+    <!-- Dashboard Cards -->
+    <dimen name="dashboard_card_min_height">120dp</dimen>
+    <dimen name="dashboard_card_icon_size">40dp</dimen>
+    
+    <!-- Dividers -->
+    <dimen name="divider_height">1dp</dimen>
+    
+    <!-- Safe Areas -->
+    <dimen name="edge_margin">16dp</dimen>
+    <dimen name="edge_margin_large">24dp</dimen>
+
+    <!-- ============================== -->
+    <!-- ANIMATION DURATIONS (ms)       -->
+    <!-- values stored as integers      -->
+    <!-- ============================== -->
+    
+    <integer name="anim_duration_instant">100</integer>
+    <integer name="anim_duration_fast">150</integer>
+    <integer name="anim_duration_normal">200</integer>
+    <integer name="anim_duration_slow">300</integer>
+    <integer name="anim_duration_slower">400</integer>
+    <integer name="anim_duration_page">500</integer>
+
+</resources>

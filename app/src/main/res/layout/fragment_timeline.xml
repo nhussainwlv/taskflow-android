@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+   Timeline/Gantt View Fragment Layout
+   Horizontal timeline with task bars and pinch-to-zoom support.
+-->
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".ui.timeline.TimelineFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/surface">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="@string/nav_timeline"/>
+
+        <!-- Date Header Scroll View -->
+        <HorizontalScrollView
+            android:id="@+id/scroll_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            android:background="@color/surface_variant">
+
+            <LinearLayout
+                android:id="@+id/container_date_headers"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/column_header_height"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="@dimen/timeline_header_width">
+                <!-- Date headers will be added programmatically -->
+            </LinearLayout>
+
+        </HorizontalScrollView>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- Timeline Content -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_timeline"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingBottom="@dimen/spacing_huge"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:listitem="@layout/item_timeline_row"/>
+
+    <!-- Empty State -->
+    <include
+        android:id="@+id/empty_state"
+        layout="@layout/view_empty_state"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+    <!-- Zoom Controls Floating Panel -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/zoom_controls"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|start"
+        android:layout_marginStart="@dimen/spacing_lg"
+        android:layout_marginBottom="@dimen/spacing_xl"
+        app:cardBackgroundColor="@color/surface"
+        app:cardCornerRadius="@dimen/radius_lg"
+        app:cardElevation="@dimen/elevation_md">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/spacing_xs">
+
+            <ImageButton
+                android:id="@+id/btn_zoom_out"
+                android:layout_width="@dimen/touch_target_min"
+                android:layout_height="@dimen/touch_target_min"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_zoom_out"
+                android:contentDescription="@string/timeline_zoom_out"/>
+
+            <TextView
+                android:id="@+id/text_zoom_level"
+                android:layout_width="48dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textAppearance="@style/TextAppearance.TaskFlow.Label.Medium"
+                android:textColor="@color/text_primary"
+                tools:text="100%"/>
+
+            <ImageButton
+                android:id="@+id/btn_zoom_in"
+                android:layout_width="@dimen/touch_target_min"
+                android:layout_height="@dimen/touch_target_min"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_zoom_in"
+                android:contentDescription="@string/timeline_zoom_in"/>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="24dp"
+                android:layout_marginHorizontal="@dimen/spacing_xs"
+                android:background="@color/outline_variant"/>
+
+            <ImageButton
+                android:id="@+id/btn_fit_screen"
+                android:layout_width="@dimen/touch_target_min"
+                android:layout_height="@dimen/touch_target_min"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_fit_screen"
+                android:contentDescription="@string/timeline_fit_all"/>
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- FAB for adding tasks -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@drawable/ic_add"
+        android:contentDescription="@string/a11y_add_button"
+        app:backgroundTint="@color/primary"
+        app:tint="@color/on_primary"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

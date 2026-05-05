@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+   Custom progress bar drawable with rounded corners.
+-->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Background track -->
+    <item android:id="@android:id/background">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/progress_track"/>
+            <corners android:radius="@dimen/radius_xs"/>
+        </shape>
+    </item>
+
+    <!-- Progress indicator -->
+    <item android:id="@android:id/progress">
+        <clip>
+            <shape android:shape="rectangle">
+                <solid android:color="@color/progress_indicator"/>
+                <corners android:radius="@dimen/radius_xs"/>
+            </shape>
+        </clip>
+    </item>
+
+</layer-list>

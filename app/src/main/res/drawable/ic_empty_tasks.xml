@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+   Empty state illustration for no tasks
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="120dp"
+    android:viewportWidth="120"
+    android:viewportHeight="120">
+    
+    <!-- Clipboard -->
+    <path
+        android:fillColor="@color/surface_container_high"
+        android:pathData="M30,25h60v80c0,2.2 -1.8,4 -4,4H34c-2.2,0 -4,-1.8 -4,-4V25z"/>
+    
+    <!-- Clipboard top -->
+    <path
+        android:fillColor="@color/surface_container_highest"
+        android:pathData="M45,15h30c2.2,0 4,1.8 4,4v10H41V19c0,-2.2 1.8,-4 4,-4z"/>
+    
+    <!-- Checkbox lines -->
+    <path
+        android:fillColor="@color/outline"
+        android:pathData="M40,45h10v10H40V45z M55,48h25v4H55V48z"/>
+    
+    <path
+        android:fillColor="@color/outline"
+        android:pathData="M40,65h10v10H40V65z M55,68h25v4H55V68z"/>
+    
+    <path
+        android:fillColor="@color/outline"
+        android:pathData="M40,85h10v10H40V85z M55,88h25v4H55V88z"/>
+    
+    <!-- Checkmark on first item -->
+    <path
+        android:fillColor="@color/success"
+        android:pathData="M43,50l2,2l5,-5"
+        android:strokeWidth="2"
+        android:strokeColor="@color/success"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"/>
+    
+</vector>

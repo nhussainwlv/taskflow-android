@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+   Task Detail Bottom Sheet Layout
+   Full task editing interface with all properties.
+-->
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/surface">
+
+    <!-- Drag Handle -->
+    <View
+        android:layout_width="@dimen/bottom_sheet_handle_width"
+        android:layout_height="@dimen/bottom_sheet_handle_height"
+        android:layout_gravity="top|center_horizontal"
+        android:layout_marginTop="@dimen/spacing_sm"
+        android:background="@drawable/bg_bottom_sheet_handle"/>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/spacing_lg"
+        android:clipToPadding="false"
+        android:paddingBottom="@dimen/spacing_xxl">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_lg">
+
+            <!-- Header: Title and Actions -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/checkbox_complete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="@dimen/touch_target_min"
+                    android:minHeight="@dimen/touch_target_min"
+                    app:buttonTint="@color/selector_checkbox"/>
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:hint="@string/task_title_hint"
+                    android:inputType="text"
+                    android:maxLines="2"
+                    android:textAppearance="@style/TextAppearance.TaskFlow.Title.Large"
+                    android:textColor="@color/text_primary"
+                    tools:text="Fix login crash on Android 14"/>
+
+                <ImageButton
+                    android:id="@+id/btn_more"
+                    android:layout_width="@dimen/touch_target_min"
+                    android:layout_height="@dimen/touch_target_min"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/ic_more_vert"
+                    android:contentDescription="@string/a11y_more_options"/>
+
+            </LinearLayout>
+
+            <!-- Status Section -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_xl"
+                android:text="@string/task_status"
+                android:textAppearance="@style/TextAppearance.TaskFlow.Label.Medium"
+                android:textColor="@color/text_secondary"/>
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chip_group_status"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_sm"
+                app:selectionRequired="true"
+                app:singleSelection="true">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_status_todo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/status_todo"
+                    style="@style/Widget.TaskFlow.Chip.Filter"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_status_in_progress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/status_in_progress"
+                    style="@style/Widget.TaskFlow.Chip.Filter"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_status_review"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/status_review"
+                    style="@style/Widget.TaskFlow.Chip.Filter"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_status_done"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/status_done"
+                    style="@style/Widget.TaskFlow.Chip.Filter"/>
+
+            </com.google.android.material.chip.ChipGroup>
+
+            <!-- Priority Section -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_lg"
+                android:text="@string/task_priority"
+                android:textAppearance="@style/TextAppearance.TaskFlow.Label.Medium"
+                android:textColor="@color/text_secondary"/>
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chip_group_priority"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_sm"
+                app:selectionRequired="true"
+                app:singleSelection="true">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_priority_urgent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/priority_urgent"
+                    style="@style/Widget.TaskFlow.Chip.Priority.Urgent"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_priority_high"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/priority_high"
+                    style="@style/Widget.TaskFlow.Chip.Priority.High"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_priority_medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/priority_medium"
+                    style="@style/Widget.TaskFlow.Chip.Priority.Medium"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_priority_low"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/priority_low"
+                    style="@style/Widget.TaskFlow.Chip.Priority.Low"/>
+
+            </com.google.android.material.chip.ChipGroup>
+
+            <!-- Due Date -->
+            <LinearLayout
+                android:id="@+id/row_due_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_lg"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:minHeight="@dimen/touch_target_min"
+                android:orientation="horizontal"
+                android:padding="@dimen/spacing_sm">
+
+                <ImageView
+                    android:layout_width="@dimen/icon_lg"
+                    android:layout_height="@dimen/icon_lg"
+                    android:src="@drawable/ic_calendar"
+                    android:tint="@color/text_secondary"
+                    android:contentDescription="@null"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_md"
+                    android:layout_weight="1"
+                    android:text="@string/task_due_date"
+                    android:textAppearance="@style/TextAppearance.TaskFlow.Body.Medium"
+                    android:textColor="@color/text_primary"/>
+
+                <TextView
+                    android:id="@+id/text_due_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.TaskFlow.Body.Medium"
+                    android:textColor="@color/primary"
+                    tools:text="Feb 7, 2026"/>
+
+            </LinearLayout>
+
+            <!-- Category -->
+            <LinearLayout
+                android:id="@+id/row_category"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_md"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:minHeight="@dimen/touch_target_min"
+                android:orientation="horizontal"
+                android:padding="@dimen/spacing_sm">
+
+                <ImageView
+                    android:layout_width="@dimen/icon_lg"
+                    android:layout_height="@dimen/icon_lg"
+                    android:src="@drawable/ic_tag"
+                    android:tint="@color/text_secondary"
+                    android:contentDescription="@null"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_md"
+                    android:layout_weight="1"
+                    android:text="@string/task_category_label"
+                    android:textAppearance="@style/TextAppearance.TaskFlow.Body.Medium"
+                    android:textColor="@color/text_primary"/>
+
+                <TextView
+                    android:id="@+id/text_category"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.TaskFlow.Body.Medium"
+                    android:textColor="@color/primary"
+                    tools:text="Work"/>
+
+            </LinearLayout>
+
+            <!-- Assignee -->
+            <LinearLayout
+                android:id="@+id/row_assignee"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:minHeight="@dimen/touch_target_min"
+                android:orientation="horizontal"
+                android:padding="@dimen/spacing_sm">
+
+                <FrameLayout
+                    android:layout_width="@dimen/icon_lg"
+                    android:layout_height="@dimen/icon_lg">
+
+                    <TextView
+                        android:id="@+id/text_assignee_avatar"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_avatar"
+                        android:backgroundTint="@color/outline"
+                        android:gravity="center"
+                        android:textAppearance="@style/TextAppearance.TaskFlow.Label.Small"
+                        android:textColor="@color/text_inverse"
+                        tools:text="?"/>
+
+                </FrameLayout>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_md"
+                    android:layout_weight="1"
+                    android:text="@string/task_assignee"
+                    android:textAppearance="@style/TextAppearance.TaskFlow.Body.Medium"
+                    android:textColor="@color/text_primary"/>
+
+                <TextView
+                    android:id="@+id/text_assignee_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.TaskFlow.Body.Medium"
+                    android:textColor="@color/text_secondary"
+                    tools:text="Alex Chen"/>
+
+            </LinearLayout>
+
+            <!-- Progress -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_lg"
+                android:text="@string/task_progress"
+                android:textAppearance="@style/TextAppearance.TaskFlow.Label.Medium"
+                android:textColor="@color/text_secondary"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_sm"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <com.google.android.material.slider.Slider
+                    android:id="@+id/slider_progress"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:stepSize="5"
+                    android:value="0"
+                    android:valueFrom="0"
+                    android:valueTo="100"
+                    app:thumbColor="@color/primary"
+                    app:trackColorActive="@color/primary"
+                    app:trackColorInactive="@color/progress_track"/>
+
+                <TextView
+                    android:id="@+id/text_progress_value"
+                    android:layout_width="48dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:textAppearance="@style/TextAppearance.TaskFlow.Label.Large"
+                    android:textColor="@color/text_primary"
+                    tools:text="60%"/>
+
+            </LinearLayout>
+
+            <!-- Description -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_lg"
+                android:text="@string/task_description"
+                android:textAppearance="@style/TextAppearance.TaskFlow.Label.Medium"
+                android:textColor="@color/text_secondary"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_sm"
+                app:boxBackgroundMode="outline"
+                style="@style/Widget.TaskFlow.TextInputLayout">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="top"
+                    android:hint="@string/task_description_hint"
+                    android:inputType="textMultiLine"
+                    android:minLines="3"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Tags -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_lg"
+                android:text="@string/task_tags"
+                android:textAppearance="@style/TextAppearance.TaskFlow.Label.Medium"
+                android:textColor="@color/text_secondary"/>
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chip_group_tags"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_sm">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_add_tag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/task_add_tag"
+                    app:chipIcon="@drawable/ic_add"
+                    app:chipIconTint="@color/primary"
+                    style="@style/Widget.TaskFlow.Chip"/>
+
+            </com.google.android.material.chip.ChipGroup>
+
+            <!-- Timestamps -->
+            <TextView
+                android:id="@+id/text_timestamps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_xl"
+                android:textAppearance="@style/TextAppearance.TaskFlow.Body.Small"
+                android:textColor="@color/text_tertiary"
+                tools:text="Created Feb 1 · Updated 2 hours ago"/>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+   Skeleton loader background with shimmer effect placeholder
+-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    
+    <solid android:color="@color/skeleton_base"/>
+    
+    <corners android:radius="@dimen/radius_xs"/>
+    
+</shape>

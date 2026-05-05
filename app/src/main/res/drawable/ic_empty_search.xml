@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+   Empty state illustration for no search results
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="120dp"
+    android:viewportWidth="120"
+    android:viewportHeight="120">
+    
+    <!-- Magnifying glass circle -->
+    <path
+        android:fillColor="@color/surface_container_high"
+        android:pathData="M50,50m-30,0a30,30 0,1 1,60 0a30,30 0,1 1,-60 0"/>
+    
+    <!-- Glass inner -->
+    <path
+        android:fillColor="@color/surface"
+        android:pathData="M50,50m-22,0a22,22 0,1 1,44 0a22,22 0,1 1,-44 0"/>
+    
+    <!-- Handle -->
+    <path
+        android:fillColor="@color/surface_container_highest"
+        android:pathData="M72,72L95,95"
+        android:strokeWidth="12"
+        android:strokeColor="@color/surface_container_highest"
+        android:strokeLineCap="round"/>
+    
+    <!-- Question mark -->
+    <path
+        android:fillColor="@color/outline"
+        android:pathData="M45,42c0,-3 2.5,-5 5,-5s5,2 5,5c0,2 -1.5,3 -3,4l-2,1.5v3"
+        android:strokeWidth="3"
+        android:strokeColor="@color/outline"
+        android:strokeLineCap="round"/>
+    
+    <path
+        android:fillColor="@color/outline"
+        android:pathData="M50,60m-2,0a2,2 0,1 1,4 0a2,2 0,1 1,-4 0"/>
+    
+</vector>

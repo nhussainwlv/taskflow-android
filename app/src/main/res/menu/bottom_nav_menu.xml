@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+   Bottom Navigation Menu
+   Main navigation items for the app.
+-->
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/ic_home"
+        android:title="@string/nav_home"
+        android:contentDescription="@string/nav_home"/>
+
+    <item
+        android:id="@+id/boardFragment"
+        android:icon="@drawable/ic_board"
+        android:title="@string/nav_board"
+        android:contentDescription="@string/nav_board"/>
+
+    <item
+        android:id="@+id/listFragment"
+        android:icon="@drawable/ic_list"
+        android:title="@string/nav_list"
+        android:contentDescription="@string/nav_list"/>
+
+    <item
+        android:id="@+id/calendarFragment"
+        android:icon="@drawable/ic_calendar"
+        android:title="@string/nav_calendar"
+        android:contentDescription="@string/nav_calendar"/>
+
+    <item
+        android:id="@+id/timelineFragment"
+        android:icon="@drawable/ic_timeline"
+        android:title="@string/nav_timeline"
+        android:contentDescription="@string/nav_timeline"/>
+
+</menu>

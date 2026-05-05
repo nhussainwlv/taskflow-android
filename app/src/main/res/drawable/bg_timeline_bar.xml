@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+   Timeline task bar background
+-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    
+    <solid android:color="@color/primary"/>
+    
+    <corners android:radius="@dimen/timeline_bar_corner_radius"/>
+    
+</shape>

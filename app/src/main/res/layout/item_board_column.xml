@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+   Kanban Column Item Layout
+   Vertical column containing header and task cards.
+-->
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_column"
+    android:layout_width="@dimen/column_width"
+    android:layout_height="match_parent"
+    android:layout_marginEnd="@dimen/column_spacing"
+    app:cardBackgroundColor="@color/surface_dim"
+    app:cardCornerRadius="@dimen/radius_md"
+    app:cardElevation="0dp"
+    app:strokeColor="@color/outline_variant"
+    app:strokeWidth="@dimen/stroke_thin">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- Column Header -->
+        <LinearLayout
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_column_header"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/spacing_md">
+
+            <!-- Color Indicator -->
+            <View
+                android:id="@+id/view_color"
+                android:layout_width="4dp"
+                android:layout_height="@dimen/icon_lg"
+                android:background="@drawable/bg_chip"
+                tools:backgroundTint="@color/status_todo"/>
+
+            <!-- Column Name -->
+            <TextView
+                android:id="@+id/text_column_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_sm"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textAppearance="@style/TextAppearance.TaskFlow.Title.Small"
+                android:textColor="@color/text_primary"
+                tools:text="To Do"/>
+
+            <!-- Task Count Badge -->
+            <TextView
+                android:id="@+id/text_task_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_sm"
+                android:background="@drawable/bg_chip"
+                android:backgroundTint="@color/surface_container"
+                android:paddingHorizontal="@dimen/spacing_sm"
+                android:paddingVertical="@dimen/spacing_xxs"
+                android:textAppearance="@style/TextAppearance.TaskFlow.Label.Small"
+                android:textColor="@color/text_secondary"
+                tools:text="5"/>
+
+            <!-- Collapse/Expand Button -->
+            <ImageButton
+                android:id="@+id/btn_collapse"
+                android:layout_width="@dimen/touch_target_min"
+                android:layout_height="@dimen/touch_target_min"
+                android:layout_marginStart="@dimen/spacing_xs"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:rotation="0"
+                android:src="@drawable/ic_expand_more"
+                android:contentDescription="@string/a11y_collapse"
+                android:visibility="gone"/>
+
+            <!-- More Options Menu -->
+            <ImageButton
+                android:id="@+id/btn_column_menu"
+                android:layout_width="@dimen/touch_target_min"
+                android:layout_height="@dimen/touch_target_min"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_more_vert"
+                android:contentDescription="@string/a11y_more_options"/>
+
+        </LinearLayout>
+
+        <!-- WIP Limit Warning -->
+        <LinearLayout
+            android:id="@+id/wip_warning"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/warning_container"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="@dimen/spacing_sm"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <ImageView
+                android:layout_width="@dimen/icon_sm"
+                android:layout_height="@dimen/icon_sm"
+                android:src="@drawable/ic_priority_urgent"
+                android:tint="@color/warning"
+                android:contentDescription="@null"/>
+
+            <TextView
+                android:id="@+id/text_wip_warning"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_xs"
+                android:text="WIP limit exceeded"
+                android:textAppearance="@style/TextAppearance.TaskFlow.Label.Small"
+                android:textColor="@color/on_warning_container"/>
+
+        </LinearLayout>
+
+        <!-- Tasks RecyclerView -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_tasks"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:clipToPadding="false"
+            android:padding="@dimen/spacing_sm"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:itemCount="3"
+            tools:listitem="@layout/item_task_card"/>
+
+        <!-- Add Task Button -->
+        <LinearLayout
+            android:id="@+id/btn_add_task"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="@dimen/spacing_md">
+
+            <ImageView
+                android:layout_width="@dimen/icon_md"
+                android:layout_height="@dimen/icon_md"
+                android:src="@drawable/ic_add"
+                android:tint="@color/text_secondary"
+                android:contentDescription="@null"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_xs"
+                android:text="@string/board_add_task"
+                android:textAppearance="@style/TextAppearance.TaskFlow.Label.Medium"
+                android:textColor="@color/text_secondary"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

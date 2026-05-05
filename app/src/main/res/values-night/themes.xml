@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+   TaskFlow Dark Theme Configuration
+   Material Design 3 dark theme with custom brand colors.
+-->
+<resources>
+
+    <!-- ============================== -->
+    <!-- DARK APPLICATION THEME         -->
+    <!-- ============================== -->
+    
+    <style name="Theme.TaskFlow" parent="Theme.Material3.Dark.NoActionBar">
+        <!-- Primary brand colors -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorPrimaryContainer">@color/primary_container</item>
+        <item name="colorOnPrimary">@color/on_primary</item>
+        <item name="colorOnPrimaryContainer">@color/on_primary_container</item>
+        
+        <!-- Secondary colors -->
+        <item name="colorSecondary">@color/secondary</item>
+        <item name="colorSecondaryContainer">@color/secondary_container</item>
+        <item name="colorOnSecondary">@color/on_secondary</item>
+        <item name="colorOnSecondaryContainer">@color/on_secondary_container</item>
+        
+        <!-- Tertiary colors -->
+        <item name="colorTertiary">@color/tertiary</item>
+        <item name="colorTertiaryContainer">@color/tertiary_container</item>
+        <item name="colorOnTertiary">@color/on_tertiary</item>
+        <item name="colorOnTertiaryContainer">@color/on_tertiary_container</item>
+        
+        <!-- Background and surface -->
+        <item name="android:colorBackground">@color/background</item>
+        <item name="colorSurface">@color/surface</item>
+        <item name="colorSurfaceVariant">@color/surface_container</item>
+        <item name="colorOnBackground">@color/on_background</item>
+        <item name="colorOnSurface">@color/on_surface</item>
+        <item name="colorOnSurfaceVariant">@color/on_surface_variant</item>
+        
+        <!-- Error colors -->
+        <item name="colorError">@color/danger</item>
+        <item name="colorErrorContainer">@color/danger_container</item>
+        <item name="colorOnError">@color/on_danger</item>
+        <item name="colorOnErrorContainer">@color/on_danger_container</item>
+        
+        <!-- Outline colors -->
+        <item name="colorOutline">@color/outline</item>
+        <item name="colorOutlineVariant">@color/outline_variant</item>
+        
+        <!-- Scrim -->
+        <item name="scrimBackground">@color/overlay</item>
+        
+        <!-- Status bar and navigation bar -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
+        
+        <!-- Edge to edge -->
+        <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
+        
+        <!-- Default widget styles -->
+        <item name="materialCardViewStyle">@style/Widget.TaskFlow.Card</item>
+        <item name="chipStyle">@style/Widget.TaskFlow.Chip</item>
+        <item name="bottomSheetDialogTheme">@style/Theme.TaskFlow.BottomSheet</item>
+        <item name="materialButtonStyle">@style/Widget.TaskFlow.Button</item>
+        <item name="textInputStyle">@style/Widget.TaskFlow.TextInputLayout</item>
+        <item name="floatingActionButtonStyle">@style/Widget.TaskFlow.FAB</item>
+        <item name="snackbarStyle">@style/Widget.TaskFlow.Snackbar</item>
+        <item name="bottomNavigationStyle">@style/Widget.TaskFlow.BottomNavigation</item>
+        
+        <!-- Ripple -->
+        <item name="android:colorControlHighlight">@color/ripple_dark</item>
+        
+        <!-- Dialog theme -->
+        <item name="materialAlertDialogTheme">@style/Theme.TaskFlow.Dialog</item>
+        
+        <!-- Shape appearances -->
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.TaskFlow.Small</item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.TaskFlow.Medium</item>
+        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.TaskFlow.Large</item>
+    </style>
+
+    <!-- ============================== -->
+    <!-- SPLASH SCREEN THEME (DARK)     -->
+    <!-- ============================== -->
+    
+    <style name="Theme.TaskFlow.SplashScreen" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/primary</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash_logo</item>
+        <item name="windowSplashScreenAnimationDuration">300</item>
+        <item name="postSplashScreenTheme">@style/Theme.TaskFlow</item>
+    </style>
+
+    <!-- ============================== -->
+    <!-- BOTTOM SHEET THEME (DARK)      -->
+    <!-- ============================== -->
+    
+    <style name="Theme.TaskFlow.BottomSheet" parent="Theme.Material3.Dark.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/Widget.TaskFlow.BottomSheet</item>
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorSurface">@color/surface</item>
+        <item name="colorOnSurface">@color/on_surface</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@color/surface</item>
+    </style>
+
+    <!-- ============================== -->
+    <!-- DIALOG THEME (DARK)            -->
+    <!-- ============================== -->
+    
+    <style name="Theme.TaskFlow.Dialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorSurface">@color/surface</item>
+        <item name="colorOnSurface">@color/on_surface</item>
+        <item name="materialAlertDialogBodyTextStyle">@style/TextAppearance.TaskFlow.Body.Medium</item>
+        <item name="materialAlertDialogTitleTextStyle">@style/TextAppearance.TaskFlow.Title.Large</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.TaskFlow.Dialog</item>
+    </style>
+
+</resources>

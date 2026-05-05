@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+   Task List Item Layout
+   Full-featured task item for list view with checkbox, details, and swipe actions.
+-->
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_task"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/spacing_lg"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardBackgroundColor="@color/surface"
+        app:cardCornerRadius="@dimen/radius_md"
+        app:cardElevation="@dimen/elevation_xs">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:minHeight="@dimen/list_item_height"
+            android:orientation="horizontal"
+            android:padding="@dimen/spacing_md">
+
+            <!-- Checkbox for completion -->
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/checkbox_task"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="@dimen/touch_target_min"
+                android:minHeight="@dimen/touch_target_min"
+                app:buttonTint="@color/selector_checkbox"/>
+
+            <!-- Task Content -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_sm"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <!-- Title Row with Flag -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <!-- Urgent Flag Icon -->
+                    <ImageView
+                        android:id="@+id/icon_flag"
+                        android:layout_width="@dimen/icon_sm"
+                        android:layout_height="@dimen/icon_sm"
+                        android:layout_marginEnd="@dimen/spacing_xs"
+                        android:src="@drawable/ic_flag"
+                        android:tint="@color/priority_urgent"
+                        android:visibility="gone"
+                        android:contentDescription="@string/priority_urgent"
+                        tools:visibility="visible"/>
+
+                    <!-- Title -->
+                    <TextView
+                        android:id="@+id/text_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:textAppearance="@style/TextAppearance.TaskFlow.Body.Large"
+                        android:textColor="@color/text_primary"
+                        tools:text="Implement push notifications"/>
+
+                </LinearLayout>
+
+                <!-- Meta row: status, priority, due date, progress -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_xs"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <!-- Status Chip -->
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/chip_height_small"
+                        android:textAppearance="@style/TextAppearance.TaskFlow.Label.Small"
+                        app:chipCornerRadius="@dimen/radius_xs"
+                        app:chipMinHeight="@dimen/chip_height_small"
+                        app:chipStartPadding="@dimen/spacing_sm"
+                        app:chipEndPadding="@dimen/spacing_sm"
+                        tools:text="In Progress"/>
+
+                    <!-- Priority Chip -->
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_priority"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/chip_height_small"
+                        android:layout_marginStart="@dimen/spacing_xs"
+                        android:textAppearance="@style/TextAppearance.TaskFlow.Label.Small"
+                        app:chipCornerRadius="@dimen/radius_xs"
+                        app:chipMinHeight="@dimen/chip_height_small"
+                        app:chipStartPadding="@dimen/spacing_sm"
+                        app:chipEndPadding="@dimen/spacing_sm"
+                        tools:text="High"/>
+
+                    <!-- Spacer -->
+                    <Space
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"/>
+
+                    <!-- Due Date -->
+                    <TextView
+                        android:id="@+id/text_due_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@style/TextAppearance.TaskFlow.Label.Small"
+                        android:textColor="@color/text_secondary"
+                        android:visibility="gone"
+                        tools:text="Feb 7"
+                        tools:visibility="visible"/>
+
+                </LinearLayout>
+
+                <!-- Progress Row -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_xs"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+
+                    <ProgressBar
+                        android:id="@+id/progress_bar"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/progress_bar_height"
+                        android:layout_weight="1"
+                        android:max="100"
+                        android:progress="60"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:progressDrawable="@drawable/bg_progress_bar"
+                        tools:progress="60"/>
+
+                    <TextView
+                        android:id="@+id/text_progress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_sm"
+                        android:textAppearance="@style/TextAppearance.TaskFlow.Label.Small"
+                        android:textColor="@color/text_secondary"
+                        tools:text="60%"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Selection Overlay -->
+    <View
+        android:id="@+id/selected_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="@dimen/spacing_lg"
+        android:background="@color/primary"
+        android:alpha="0.1"
+        android:visibility="gone"/>
+
+</FrameLayout>

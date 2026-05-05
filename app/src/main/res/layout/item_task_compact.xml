@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+   Compact Task Item Layout
+   Used in upcoming tasks list on the home screen.
+-->
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_task"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/spacing_sm"
+    android:clickable="true"
+    android:focusable="true"
+    app:cardBackgroundColor="@color/surface"
+    app:cardCornerRadius="@dimen/radius_md"
+    app:cardElevation="@dimen/elevation_xs"
+    app:rippleColor="@color/ripple_light">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/spacing_md">
+
+        <!-- Priority Indicator -->
+        <View
+            android:id="@+id/view_priority"
+            android:layout_width="4dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bg_chip"
+            android:backgroundTint="@color/priority_medium"/>
+
+        <!-- Task Info -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_md"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/text_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textAppearance="@style/TextAppearance.TaskFlow.Body.Medium"
+                android:textColor="@color/text_primary"
+                tools:text="Fix login crash on Android 14"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_xxs"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <!-- Due Date -->
+                <TextView
+                    android:id="@+id/text_due_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_calendar"
+                    android:drawablePadding="@dimen/spacing_xxs"
+                    android:drawableTint="@color/text_tertiary"
+                    android:textAppearance="@style/TextAppearance.TaskFlow.Label.Small"
+                    android:textColor="@color/text_tertiary"
+                    tools:text="Tomorrow"
+                    tools:drawableStart="@drawable/ic_calendar"/>
+
+                <!-- Status Chip -->
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/chip_height_small"
+                    android:layout_marginStart="@dimen/spacing_sm"
+                    android:textAppearance="@style/TextAppearance.TaskFlow.Label.Small"
+                    app:chipMinHeight="@dimen/chip_height_small"
+                    app:chipCornerRadius="@dimen/radius_xs"
+                    app:chipBackgroundColor="@color/status_in_progress_bg"
+                    android:textColor="@color/status_in_progress"
+                    tools:text="In Progress"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Checkbox -->
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/checkbox_complete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="@dimen/touch_target_min"
+            android:minHeight="@dimen/touch_target_min"
+            android:contentDescription="@string/a11y_checkbox_unchecked"
+            app:buttonTint="@color/selector_checkbox"/>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

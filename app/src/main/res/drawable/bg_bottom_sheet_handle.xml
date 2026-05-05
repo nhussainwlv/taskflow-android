@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+   Bottom sheet drag handle
+-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    
+    <solid android:color="@color/outline"/>
+    
+    <size
+        android:width="@dimen/bottom_sheet_handle_width"
+        android:height="@dimen/bottom_sheet_handle_height"/>
+    
+    <corners android:radius="@dimen/radius_xxs"/>
+    
+</shape>
