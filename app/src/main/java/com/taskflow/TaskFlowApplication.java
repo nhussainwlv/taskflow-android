@@ -1,3 +1,10 @@
+/**
+ * Student Name : Naeem Hussain
+ * ID : 2365963
+ * Module Name : Project and Professionalism
+ * Note: Comments in this file are kept brief and readable.
+ */
+
 package com.taskflow;
 
 import android.app.Application;
@@ -7,7 +14,6 @@ import android.os.Build;
 import android.os.StrictMode;
 
 import androidx.work.Configuration;
-import androidx.work.WorkManager;
 
 import com.google.android.material.color.DynamicColors;
 import com.taskflow.sync.SyncWorker;
@@ -40,10 +46,11 @@ public class TaskFlowApplication extends Application implements Configuration.Pr
         
         // Create notification channels
         createNotificationChannels();
-        
-        // Initialize WorkManager
-        WorkManager.initialize(this, getWorkManagerConfiguration());
-        
+
+        // WorkManager: this Application implements Configuration.Provider — do not call
+        // WorkManager.initialize() here; that can crash with "already initialized" when merged
+        // with startup. First WorkManager.getInstance() uses getWorkManagerConfiguration().
+
         // Schedule background sync worker for notifications
         SyncWorker.schedule(this);
     }

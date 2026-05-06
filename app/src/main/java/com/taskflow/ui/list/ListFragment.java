@@ -1,3 +1,10 @@
+/**
+ * Student Name : Naeem Hussain
+ * ID : 2365963
+ * Module Name : Project and Professionalism
+ * Note: Comments in this file are kept brief and readable.
+ */
+
 package com.taskflow.ui.list;
 
 import android.graphics.Canvas;

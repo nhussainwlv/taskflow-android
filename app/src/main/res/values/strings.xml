@@ -283,7 +283,7 @@
     <string name="dissertation_context_body">This native build pairs with the TaskFlow Progressive Web Application for the study &quot;Evaluating Progressive Web Applications as a Viable Alternative to Native Mobile Applications&quot;. Compare installation, updates, offline handling, and accessibility settings between the two clients using the same demo data model.</string>
 
     <string name="settings_network_accessibility">Connectivity &amp; system access</string>
-    <string name="network_offline_message">No network connection. Your tasks stay on this device; any future sync would resume when online.</string>
+    <string name="network_offline_message">App is offline, but you can still work.</string>
     <string name="network_banner_dismiss">Dismiss</string>
 
     <string name="settings_readability">Readability</string>

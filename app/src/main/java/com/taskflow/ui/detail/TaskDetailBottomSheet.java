@@ -1,3 +1,10 @@
+/**
+ * Student Name : Naeem Hussain
+ * ID : 2365963
+ * Module Name : Project and Professionalism
+ * Note: Comments in this file are kept brief and readable.
+ */
+
 package com.taskflow.ui.detail;
 
 import android.content.Intent;
@@ -11,6 +18,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -20,7 +28,6 @@ import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.checkbox.MaterialCheckBox;
 import com.google.android.material.datepicker.MaterialDatePicker;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.slider.Slider;
 import com.google.android.material.snackbar.Snackbar;
 import com.taskflow.R;
@@ -317,7 +324,7 @@ public class TaskDetailBottomSheet extends BottomSheetDialogFragment {
         }
         final int[] choice = {selected};
         int start = selected;
-        new MaterialAlertDialogBuilder(requireContext())
+        new AlertDialog.Builder(requireContext())
                 .setTitle(R.string.pick_category_title)
                 .setSingleChoiceItems(labels, start, (d, which) -> choice[0] = which)
                 .setPositiveButton(R.string.action_apply, (dialog, idx) -> {
@@ -379,7 +386,7 @@ public class TaskDetailBottomSheet extends BottomSheetDialogFragment {
                 }
 
                 final int[] choice = {selectedIndex};
-                MaterialAlertDialogBuilder b = new MaterialAlertDialogBuilder(requireContext());
+                AlertDialog.Builder b = new AlertDialog.Builder(requireContext());
                 b.setTitle(R.string.pick_assignee_title);
                 b.setSingleChoiceItems(names, selectedIndex, (d, which) -> choice[0] = which);
                 b.setPositiveButton(R.string.action_apply, (di, which) -> {
@@ -428,7 +435,7 @@ public class TaskDetailBottomSheet extends BottomSheetDialogFragment {
                     checked[i] = assigned.contains(t.getId());
                 }
 
-                new MaterialAlertDialogBuilder(requireContext())
+                new AlertDialog.Builder(requireContext())
                         .setTitle(R.string.pick_tags_title)
                         .setMultiChoiceItems(names, checked, (d, idx, isChecked) -> checked[idx] = isChecked)
                         .setPositiveButton(R.string.action_apply, (dialog, idx) -> {
@@ -529,7 +536,7 @@ public class TaskDetailBottomSheet extends BottomSheetDialogFragment {
         if (currentTask == null) return;
         String titleSafe = currentTask.getTitle().length() > 40
                 ? currentTask.getTitle().substring(0, 39) + "…" : currentTask.getTitle();
-        new MaterialAlertDialogBuilder(requireContext())
+        new AlertDialog.Builder(requireContext())
                 .setTitle(R.string.action_delete_task)
                 .setMessage(getString(R.string.task_delete_confirm, titleSafe))
                 .setPositiveButton(android.R.string.ok, (d, which) -> {

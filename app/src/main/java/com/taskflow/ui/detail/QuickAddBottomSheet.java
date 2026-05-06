@@ -1,3 +1,10 @@
+/**
+ * Student Name : Naeem Hussain
+ * ID : 2365963
+ * Module Name : Project and Professionalism
+ * Note: Comments in this file are kept brief and readable.
+ */
+
 package com.taskflow.ui.detail;
 
 import android.content.res.ColorStateList;
@@ -11,6 +18,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
@@ -20,7 +28,6 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.datepicker.MaterialDatePicker;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -275,7 +282,7 @@ public class QuickAddBottomSheet extends BottomSheetDialogFragment {
                 if (idx < 0) idx = 0;
                 final int[] choice = {idx};
                 int start = idx >= 0 ? idx : 0;
-                new MaterialAlertDialogBuilder(requireContext())
+                new AlertDialog.Builder(requireContext())
                         .setTitle(R.string.pick_board_title)
                         .setSingleChoiceItems(titles, start, (d, which) -> choice[0] = which)
                         .setPositiveButton(R.string.action_apply, (d, w) -> {
@@ -303,7 +310,7 @@ public class QuickAddBottomSheet extends BottomSheetDialogFragment {
             }
         }
         final int[] choice = {selected};
-        new MaterialAlertDialogBuilder(requireContext())
+        new AlertDialog.Builder(requireContext())
                 .setTitle(R.string.pick_category_title)
                 .setSingleChoiceItems(labels, selected, (d, which) -> choice[0] = which)
                 .setPositiveButton(R.string.action_apply, (d, w) -> {
@@ -340,7 +347,7 @@ public class QuickAddBottomSheet extends BottomSheetDialogFragment {
                 if (idx < 0) idx = 0;
                 final int[] choice = {idx};
                 int start = idx >= 0 ? idx : 0;
-                new MaterialAlertDialogBuilder(requireContext())
+                new AlertDialog.Builder(requireContext())
                         .setTitle(R.string.pick_column_title)
                         .setSingleChoiceItems(titles, start, (d, which) -> choice[0] = which)
                         .setPositiveButton(R.string.action_apply, (d, w) -> {

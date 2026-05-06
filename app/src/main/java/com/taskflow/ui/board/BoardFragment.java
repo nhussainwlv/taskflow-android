@@ -1,3 +1,10 @@
+/**
+ * Student Name : Naeem Hussain
+ * ID : 2365963
+ * Module Name : Project and Professionalism
+ * Note: Comments in this file are kept brief and readable.
+ */
+
 package com.taskflow.ui.board;
 
 import android.os.Bundle;
@@ -8,6 +15,7 @@ import android.widget.PopupMenu;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
@@ -15,7 +23,6 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.taskflow.R;
@@ -210,7 +217,7 @@ public class BoardFragment extends Fragment implements
         TextInputEditText input = dialogView.findViewById(R.id.text_input);
         input.setHint(R.string.board_column_name);
         
-        new MaterialAlertDialogBuilder(requireContext())
+        new AlertDialog.Builder(requireContext())
             .setTitle(R.string.board_add_column)
             .setView(dialogView)
             .setPositiveButton(R.string.action_add, (dialog, which) -> {
@@ -263,7 +270,7 @@ public class BoardFragment extends Fragment implements
         input.setHint(R.string.board_column_name);
         input.selectAll();
         
-        new MaterialAlertDialogBuilder(requireContext())
+        new AlertDialog.Builder(requireContext())
             .setTitle(R.string.board_rename_column)
             .setView(dialogView)
             .setPositiveButton(R.string.action_save, (dialog, which) -> {
@@ -277,7 +284,7 @@ public class BoardFragment extends Fragment implements
     }
 
     private void showDeleteColumnConfirmation(Column column) {
-        new MaterialAlertDialogBuilder(requireContext())
+        new AlertDialog.Builder(requireContext())
             .setTitle(R.string.board_delete_column)
             .setMessage(getString(R.string.board_delete_column_confirm, column.getName()))
             .setPositiveButton(R.string.action_delete, (dialog, which) -> {
@@ -293,7 +300,7 @@ public class BoardFragment extends Fragment implements
         TextInputEditText input = dialogView.findViewById(R.id.text_input);
         input.setHint(R.string.task_title_hint);
         
-        new MaterialAlertDialogBuilder(requireContext())
+        new AlertDialog.Builder(requireContext())
             .setTitle(R.string.board_add_task)
             .setView(dialogView)
             .setPositiveButton(R.string.action_add, (dialog, which) -> {

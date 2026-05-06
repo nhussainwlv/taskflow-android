@@ -1,3 +1,10 @@
+/**
+ * Student Name : Naeem Hussain
+ * ID : 2365963
+ * Module Name : Project and Professionalism
+ * Note: Comments in this file are kept brief and readable.
+ */
+
 package com.taskflow.data.dao;
 
 import androidx.lifecycle.LiveData;
@@ -46,6 +53,12 @@ public interface UserDao {
 
     @Query("SELECT * FROM users WHERE id = :userId")
     User getUserByIdSync(long userId);
+
+    @Query("SELECT * FROM users WHERE email = :email LIMIT 1")
+    User getUserByEmailSync(String email);
+
+    @Query("DELETE FROM users WHERE email = :email")
+    void deleteUsersWithEmail(String email);
 
     @Query("SELECT * FROM users ORDER BY name ASC")
     LiveData<List<User>> getAllUsers();

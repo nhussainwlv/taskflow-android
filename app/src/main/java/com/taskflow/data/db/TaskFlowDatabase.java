@@ -1,3 +1,10 @@
+/**
+ * Student Name : Naeem Hussain
+ * ID : 2365963
+ * Module Name : Project and Professionalism
+ * Note: Comments in this file are kept brief and readable.
+ */
+
 package com.taskflow.data.db;
 
 import android.content.Context;
@@ -22,6 +29,7 @@ import com.taskflow.model.Tag;
 import com.taskflow.model.Task;
 import com.taskflow.model.TaskTag;
 import com.taskflow.model.User;
+import com.taskflow.BuildConfig;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -42,16 +50,33 @@ import java.util.concurrent.Executors;
         TaskTag.class,
         SavedView.class
     },
-    version = 2,
+    version = 3,
     exportSchema = true
 )
 public abstract class TaskFlowDatabase extends RoomDatabase {
 
+    /**
+     * v1 → v2: add category column + index (Room expects {@code index_tasks_category} from {@link Task}).
+     */
     private static final Migration MIGRATION_1_2 = new Migration(1, 2) {
         @Override
         public void migrate(@NonNull SupportSQLiteDatabase database) {
             database.execSQL(
                     "ALTER TABLE tasks ADD COLUMN category TEXT NOT NULL DEFAULT 'general'");
+            database.execSQL(
+                    "CREATE INDEX IF NOT EXISTS `index_tasks_category` ON `tasks` (`category`)");
+        }
+    };
+
+    /**
+     * v2 → v3: older upgrades only added {@code category} via ALTER TABLE; the matching index was
+     * missing, so Room validation failed. Creating the index aligns DB with the entity.
+     */
+    private static final Migration MIGRATION_2_3 = new Migration(2, 3) {
+        @Override
+        public void migrate(@NonNull SupportSQLiteDatabase database) {
+            database.execSQL(
+                    "CREATE INDEX IF NOT EXISTS `index_tasks_category` ON `tasks` (`category`)");
         }
     };
 
@@ -71,7 +96,10 @@ public abstract class TaskFlowDatabase extends RoomDatabase {
     // ========================================
     
     private static volatile TaskFlowDatabase INSTANCE;
-    
+
+    /** Set before {@link #build()} so seed runnable can call {@link #getDatabase(Context)} safely. */
+    private static volatile Context sAppContext;
+
     // Executor for background database operations
     private static final int NUMBER_OF_THREADS = 4;
     public static final ExecutorService databaseWriteExecutor =
@@ -93,14 +121,23 @@ public abstract class TaskFlowDatabase extends RoomDatabase {
         if (INSTANCE == null) {
             synchronized (TaskFlowDatabase.class) {
                 if (INSTANCE == null) {
-                    INSTANCE = Room.databaseBuilder(
-                            context.getApplicationContext(),
+                    Context app = context.getApplicationContext();
+                    sAppContext = app;
+
+                    RoomDatabase.Builder<TaskFlowDatabase> builder = Room.databaseBuilder(
+                            app,
                             TaskFlowDatabase.class,
                             "taskflow_database"
                     )
-                            .addMigrations(MIGRATION_1_2)
-                            .addCallback(sRoomDatabaseCallback)
-                            .build();
+                            .addMigrations(MIGRATION_1_2, MIGRATION_2_3)
+                            .addCallback(sRoomDatabaseCallback);
+
+                    // Dev/demo: recover from corrupt or mismatched local DB without manual wipe
+                    if (BuildConfig.DEBUG) {
+                        builder.fallbackToDestructiveMigration();
+                    }
+
+                    INSTANCE = builder.build();
                 }
             }
         }
@@ -114,10 +151,16 @@ public abstract class TaskFlowDatabase extends RoomDatabase {
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
-            
-            // Seed sample data on background thread
+
+            // Never use INSTANCE here — it is not assigned until Room.databaseBuilder().build()
+            // returns. A pooled thread may run this before INSTANCE is set, causing SQLite/Room
+            // crashes when seed runs concurrently with first queries.
             databaseWriteExecutor.execute(() -> {
-                seedSampleData(INSTANCE);
+                Context ctx = sAppContext;
+                if (ctx == null) {
+                    return;
+                }
+                seedSampleData(getDatabase(ctx));
             });
         }
     };
@@ -127,6 +170,9 @@ public abstract class TaskFlowDatabase extends RoomDatabase {
      * Creates users, tags, a board with columns, and sample tasks.
      */
     private static void seedSampleData(TaskFlowDatabase db) {
+        if (db == null) {
+            return;
+        }
         // ========================================
         // SEED USERS
         // ========================================
