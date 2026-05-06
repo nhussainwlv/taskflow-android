@@ -1,6 +1,9 @@
 package com.taskflow.data.repo;
 
 import android.app.Application;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.util.Patterns;
 
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.LiveData;
@@ -496,6 +499,135 @@ public class TaskRepository {
 
     public LiveData<User> getCurrentUser() {
         return userDao.getCurrentUser();
+    }
+
+    /** Seeded demo profile (pairs with PWA “demo” local session — no real server). */
+    public static final String DEMO_USER_EMAIL = "you@taskflow.app";
+    public static final String DEMO_USER_PASSWORD = "taskflow123";
+    public static final String GUEST_USER_EMAIL = "guest@taskflow.local";
+    private static final String AUTH_PREFS = "taskflow_local_auth";
+    private static final String AUTH_PASSWORD_PREFIX = "pwd:";
+
+    /**
+     * Sign out of the demo session: switch “current user” to a local Guest profile (like PWA signing out).
+     */
+    public void signOutDemoSession(Runnable onDone) {
+        executor.execute(() -> {
+            userDao.deleteUsersWithEmail(GUEST_USER_EMAIL);
+            userDao.clearCurrentUser();
+            User guest = new User("Guest");
+            guest.setEmail(GUEST_USER_EMAIL);
+            guest.setCurrentUser(true);
+            guest.setAvatarColor(5);
+            userDao.insert(guest);
+            if (onDone != null) {
+                ContextCompat.getMainExecutor(application).execute(onDone);
+            }
+        });
+    }
+
+    /**
+     * Sign back in as the seeded demo user “You” (same idea as PWA “Sign in” / demo account).
+     */
+    public void signInDemoSession(Runnable onDone) {
+        executor.execute(() -> {
+            userDao.deleteUsersWithEmail(GUEST_USER_EMAIL);
+            userDao.clearCurrentUser();
+            User you = userDao.getUserByEmailSync(DEMO_USER_EMAIL);
+            if (you != null) {
+                userDao.setCurrentUser(you.getId());
+            }
+            if (onDone != null) {
+                ContextCompat.getMainExecutor(application).execute(onDone);
+            }
+        });
+    }
+
+    public void signOutSession(Runnable onDone) {
+        signOutDemoSession(onDone);
+    }
+
+    public void signInLocalSession(String email, String password, Consumer<Boolean> onResult) {
+        executor.execute(() -> {
+            String normalizedEmail = normalizeEmail(email);
+            boolean ok = false;
+            if (normalizedEmail != null && password != null) {
+                String stored = getAuthPrefs().getString(authPasswordKey(normalizedEmail), null);
+                User user = userDao.getUserByEmailSync(normalizedEmail);
+                if (stored != null && stored.equals(password) && user != null) {
+                    userDao.deleteUsersWithEmail(GUEST_USER_EMAIL);
+                    userDao.clearCurrentUser();
+                    userDao.setCurrentUser(user.getId());
+                    ok = true;
+                }
+            }
+            final boolean result = ok;
+            if (onResult != null) {
+                ContextCompat.getMainExecutor(application).execute(() -> onResult.accept(result));
+            }
+        });
+    }
+
+    public void signUpLocalSession(String name, String email, String password, Consumer<Boolean> onResult) {
+        executor.execute(() -> {
+            String normalizedName = name != null ? name.trim() : "";
+            String normalizedEmail = normalizeEmail(email);
+            boolean ok = false;
+            if (!normalizedName.isEmpty()
+                    && normalizedEmail != null
+                    && password != null
+                    && password.length() >= 6
+                    && Patterns.EMAIL_ADDRESS.matcher(normalizedEmail).matches()
+                    && userDao.getUserByEmailSync(normalizedEmail) == null) {
+                userDao.deleteUsersWithEmail(GUEST_USER_EMAIL);
+                userDao.clearCurrentUser();
+                User user = new User(normalizedName);
+                user.setEmail(normalizedEmail);
+                user.setCurrentUser(true);
+                user.setAvatarColor(6);
+                userDao.insert(user);
+                getAuthPrefs().edit().putString(authPasswordKey(normalizedEmail), password).apply();
+                ok = true;
+            }
+            final boolean result = ok;
+            if (onResult != null) {
+                ContextCompat.getMainExecutor(application).execute(() -> onResult.accept(result));
+            }
+        });
+    }
+
+    public void changePasswordForCurrentUser(String currentPassword, String newPassword, Consumer<Boolean> onResult) {
+        executor.execute(() -> {
+            boolean ok = false;
+            User current = userDao.getCurrentUserSync();
+            String email = current != null ? normalizeEmail(current.getEmail()) : null;
+            if (email != null && currentPassword != null && newPassword != null && newPassword.length() >= 6) {
+                SharedPreferences prefs = getAuthPrefs();
+                String stored = prefs.getString(authPasswordKey(email), null);
+                if (stored != null && stored.equals(currentPassword)) {
+                    prefs.edit().putString(authPasswordKey(email), newPassword).apply();
+                    ok = true;
+                }
+            }
+            final boolean result = ok;
+            if (onResult != null) {
+                ContextCompat.getMainExecutor(application).execute(() -> onResult.accept(result));
+            }
+        });
+    }
+
+    private SharedPreferences getAuthPrefs() {
+        return application.getSharedPreferences(AUTH_PREFS, Context.MODE_PRIVATE);
+    }
+
+    private static String normalizeEmail(String email) {
+        if (email == null) return null;
+        String out = email.trim().toLowerCase();
+        return out.isEmpty() ? null : out;
+    }
+
+    private static String authPasswordKey(String email) {
+        return AUTH_PASSWORD_PREFIX + email;
     }
 
     public LiveData<List<User>> searchUsers(String query) {

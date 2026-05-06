@@ -8,6 +8,7 @@ import android.net.Network;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.splashscreen.SplashScreen;
@@ -39,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
     private ConnectivityManager.NetworkCallback networkCallback;
     private boolean networkCallbackRegistered;
     private boolean networkBannerDismissed;
+    private boolean isOffline;
+    private boolean offlineDialogShownForCurrentOutage;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -146,11 +149,33 @@ public class MainActivity extends AppCompatActivity {
 
     private void applyNetworkBannerState(boolean offline) {
         if (binding == null) return;
+        boolean justWentOffline = offline && !isOffline;
+        if (justWentOffline) {
+            showOfflineDialog();
+        }
+        if (!offline) {
+            offlineDialogShownForCurrentOutage = false;
+        }
+        isOffline = offline;
         if (!offline) {
             networkBannerDismissed = false;
         }
         boolean visible = offline && !networkBannerDismissed;
         binding.networkBanner.setVisibility(visible ? View.VISIBLE : View.GONE);
+    }
+
+    private void showOfflineDialog() {
+        if (offlineDialogShownForCurrentOutage || isFinishing() || isDestroyed()) {
+            return;
+        }
+        offlineDialogShownForCurrentOutage = true;
+
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.error_network_title)
+                .setMessage(R.string.network_offline_message)
+                .setCancelable(true)
+                .setPositiveButton(R.string.action_close, null)
+                .show();
     }
 
     @Override
@@ -161,6 +186,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void handleIntent(Intent intent) {
         if (intent == null || navController == null) return;
+
+        // Launcher tap should always open TaskFlow on Home.
+        if (Intent.ACTION_MAIN.equals(intent.getAction())
+                && intent.hasCategory(Intent.CATEGORY_LAUNCHER)) {
+            navController.navigate(R.id.homeFragment);
+            return;
+        }
 
         navController.handleDeepLink(intent);
     }

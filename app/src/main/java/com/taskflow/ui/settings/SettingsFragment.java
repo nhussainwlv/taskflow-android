@@ -4,11 +4,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.text.InputType;
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioGroup;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -16,11 +19,14 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.taskflow.R;
+import com.taskflow.data.repo.TaskRepository;
 import com.taskflow.databinding.FragmentSettingsBinding;
+import com.taskflow.model.User;
 import com.taskflow.util.PreferencesManager;
 import com.taskflow.viewmodel.TaskViewModel;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -36,6 +42,7 @@ public class SettingsFragment extends Fragment {
 
     private FragmentSettingsBinding binding;
     private PreferencesManager prefs;
+    private TaskRepository taskRepository;
     private boolean suppressListeners;
 
     @Nullable
@@ -50,6 +57,7 @@ public class SettingsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         prefs = PreferencesManager.getInstance(requireContext());
+        taskRepository = new TaskRepository(requireActivity().getApplication());
         suppressListeners = true;
 
         binding.toolbar.setNavigationOnClickListener(v ->
@@ -72,6 +80,16 @@ public class SettingsFragment extends Fragment {
             refreshLastSyncLabel();
             Snackbar.make(binding.getRoot(), R.string.settings_sync_recorded, Snackbar.LENGTH_SHORT).show();
         });
+
+        binding.btnDemoSignIn.setOnClickListener(v -> showSignInDialog());
+        binding.btnDemoSignUp.setOnClickListener(v -> showSignUpDialog());
+        binding.btnChangePassword.setOnClickListener(v -> showChangePasswordDialog());
+        binding.btnDemoSignOut.setOnClickListener(v -> taskRepository.signOutDemoSession(() ->
+                Snackbar.make(binding.getRoot(), R.string.settings_demo_signed_out, Snackbar.LENGTH_SHORT).show()
+        ));
+
+        taskRepository.getCurrentUser().observe(getViewLifecycleOwner(), this::renderAccountState);
+
         refreshLastSyncLabel();
     }
 
@@ -155,6 +173,217 @@ public class SettingsFragment extends Fragment {
         } catch (Exception e) {
             Snackbar.make(binding.getRoot(), R.string.error_generic_desc, Snackbar.LENGTH_SHORT).show();
         }
+    }
+
+    private void renderAccountState(User user) {
+        if (binding == null) return;
+        String email = user != null ? user.getEmail() : null;
+        boolean signedIn = email != null && email.equalsIgnoreCase(TaskRepository.DEMO_USER_EMAIL);
+
+        if (signedIn) {
+            binding.textAccountStatus.setText(getString(R.string.auth_account_status_signed_in, email));
+        } else {
+            binding.textAccountStatus.setText(R.string.auth_account_status_signed_out);
+        }
+        binding.btnDemoSignIn.setVisibility(signedIn ? View.GONE : View.VISIBLE);
+        binding.btnDemoSignUp.setVisibility(signedIn ? View.GONE : View.VISIBLE);
+        binding.btnChangePassword.setVisibility(signedIn ? View.VISIBLE : View.GONE);
+        binding.btnDemoSignOut.setVisibility(signedIn ? View.VISIBLE : View.GONE);
+    }
+
+    private void showSignInDialog() {
+        View content = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_sign_in, null, false);
+        TextInputLayout emailLayout = content.findViewById(R.id.input_layout_email);
+        TextInputLayout passwordLayout = content.findViewById(R.id.input_layout_password);
+        TextInputEditText emailInput = content.findViewById(R.id.input_email);
+        TextInputEditText passwordInput = content.findViewById(R.id.input_password);
+        if (emailInput != null) emailInput.setText(TaskRepository.DEMO_USER_EMAIL);
+        if (passwordInput != null) {
+            passwordInput.setText("");
+            passwordInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        }
+
+        AlertDialog dialog = new AlertDialog.Builder(requireContext())
+                .setTitle(R.string.auth_sign_in_title)
+                .setView(content)
+                .setNegativeButton(R.string.action_cancel, null)
+                .setPositiveButton(R.string.settings_demo_sign_in, null)
+                .create();
+
+        dialog.setOnShowListener(d -> dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> {
+            String email = emailInput != null && emailInput.getText() != null
+                    ? emailInput.getText().toString().trim()
+                    : "";
+            String password = passwordInput != null && passwordInput.getText() != null
+                    ? passwordInput.getText().toString()
+                    : "";
+
+            if (emailLayout != null) emailLayout.setError(null);
+            if (passwordLayout != null) passwordLayout.setError(null);
+
+            boolean valid = true;
+            if (email.isEmpty()) {
+                valid = false;
+                if (emailLayout != null) emailLayout.setError(getString(R.string.auth_email_required));
+            }
+            if (password.isEmpty()) {
+                valid = false;
+                if (passwordLayout != null) passwordLayout.setError(getString(R.string.auth_password_required));
+            }
+            if (!valid) {
+                return;
+            }
+
+            taskRepository.signInLocalSession(email, password, ok -> {
+                if (!ok) {
+                    if (emailLayout != null) emailLayout.setError(getString(R.string.auth_invalid_credentials));
+                    if (passwordLayout != null) passwordLayout.setError(getString(R.string.auth_invalid_credentials));
+                    return;
+                }
+                if (binding != null) {
+                    Snackbar.make(binding.getRoot(), R.string.settings_demo_signed_in, Snackbar.LENGTH_SHORT).show();
+                }
+                dialog.dismiss();
+            });
+        }));
+
+        dialog.show();
+    }
+
+    private void showSignUpDialog() {
+        View content = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_sign_up, null, false);
+        TextInputLayout nameLayout = content.findViewById(R.id.input_layout_name);
+        TextInputLayout emailLayout = content.findViewById(R.id.input_layout_email);
+        TextInputLayout passwordLayout = content.findViewById(R.id.input_layout_password);
+        TextInputEditText nameInput = content.findViewById(R.id.input_name);
+        TextInputEditText emailInput = content.findViewById(R.id.input_email);
+        TextInputEditText passwordInput = content.findViewById(R.id.input_password);
+        if (passwordInput != null) {
+            passwordInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        }
+
+        AlertDialog dialog = new AlertDialog.Builder(requireContext())
+                .setTitle(R.string.auth_create_account_title)
+                .setView(content)
+                .setNegativeButton(R.string.action_cancel, null)
+                .setPositiveButton(R.string.auth_create_account_action, null)
+                .create();
+
+        dialog.setOnShowListener(d -> dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> {
+            String name = nameInput != null && nameInput.getText() != null
+                    ? nameInput.getText().toString().trim()
+                    : "";
+            String email = emailInput != null && emailInput.getText() != null
+                    ? emailInput.getText().toString().trim()
+                    : "";
+            String password = passwordInput != null && passwordInput.getText() != null
+                    ? passwordInput.getText().toString()
+                    : "";
+
+            if (nameLayout != null) nameLayout.setError(null);
+            if (emailLayout != null) emailLayout.setError(null);
+            if (passwordLayout != null) passwordLayout.setError(null);
+
+            boolean valid = true;
+            if (name.isEmpty()) {
+                valid = false;
+                if (nameLayout != null) nameLayout.setError(getString(R.string.auth_name_required));
+            }
+            if (email.isEmpty()) {
+                valid = false;
+                if (emailLayout != null) emailLayout.setError(getString(R.string.auth_email_required));
+            } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                valid = false;
+                if (emailLayout != null) emailLayout.setError(getString(R.string.auth_email_invalid));
+            }
+            if (password.isEmpty()) {
+                valid = false;
+                if (passwordLayout != null) passwordLayout.setError(getString(R.string.auth_password_required));
+            } else if (password.length() < 6) {
+                valid = false;
+                if (passwordLayout != null) passwordLayout.setError(getString(R.string.auth_password_too_short));
+            }
+            if (!valid) {
+                return;
+            }
+
+            taskRepository.signUpLocalSession(name, email, password, ok -> {
+                if (!ok) {
+                    if (emailLayout != null) emailLayout.setError(getString(R.string.auth_email_exists));
+                    return;
+                }
+                if (binding != null) {
+                    Snackbar.make(binding.getRoot(), R.string.auth_account_created, Snackbar.LENGTH_SHORT).show();
+                }
+                dialog.dismiss();
+            });
+        }));
+
+        dialog.show();
+    }
+
+    private void showChangePasswordDialog() {
+        View content = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_change_password, null, false);
+        TextInputLayout currentLayout = content.findViewById(R.id.input_layout_current_password);
+        TextInputLayout newLayout = content.findViewById(R.id.input_layout_new_password);
+        TextInputEditText currentInput = content.findViewById(R.id.input_current_password);
+        TextInputEditText newInput = content.findViewById(R.id.input_new_password);
+        if (currentInput != null) {
+            currentInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        }
+        if (newInput != null) {
+            newInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        }
+
+        AlertDialog dialog = new AlertDialog.Builder(requireContext())
+                .setTitle(R.string.auth_change_password_title)
+                .setView(content)
+                .setNegativeButton(R.string.action_cancel, null)
+                .setPositiveButton(R.string.auth_change_password_button, null)
+                .create();
+
+        dialog.setOnShowListener(d -> dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> {
+            String currentPassword = currentInput != null && currentInput.getText() != null
+                    ? currentInput.getText().toString()
+                    : "";
+            String newPassword = newInput != null && newInput.getText() != null
+                    ? newInput.getText().toString()
+                    : "";
+
+            if (currentLayout != null) currentLayout.setError(null);
+            if (newLayout != null) newLayout.setError(null);
+
+            boolean valid = true;
+            if (currentPassword.isEmpty()) {
+                valid = false;
+                if (currentLayout != null) currentLayout.setError(getString(R.string.auth_password_required));
+            }
+            if (newPassword.isEmpty()) {
+                valid = false;
+                if (newLayout != null) newLayout.setError(getString(R.string.auth_password_required));
+            } else if (newPassword.length() < 6) {
+                valid = false;
+                if (newLayout != null) newLayout.setError(getString(R.string.auth_password_too_short));
+            }
+            if (!valid) {
+                return;
+            }
+
+            taskRepository.changePasswordForCurrentUser(currentPassword, newPassword, ok -> {
+                if (!ok) {
+                    if (currentLayout != null) {
+                        currentLayout.setError(getString(R.string.auth_current_password_incorrect));
+                    }
+                    return;
+                }
+                if (binding != null) {
+                    Snackbar.make(binding.getRoot(), R.string.auth_password_updated, Snackbar.LENGTH_SHORT).show();
+                }
+                dialog.dismiss();
+            });
+        }));
+
+        dialog.show();
     }
 
     @Override

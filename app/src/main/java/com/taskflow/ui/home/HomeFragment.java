@@ -14,6 +14,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.taskflow.R;
+import com.taskflow.data.repo.TaskRepository;
 import com.taskflow.databinding.FragmentHomeBinding;
 import com.taskflow.model.Board;
 import com.taskflow.model.Task;
@@ -100,6 +101,8 @@ public class HomeFragment extends Fragment {
      * Setup click listeners for interactive elements.
      */
     private void setupClickListeners() {
+        binding.taskflowBrand.setOnClickListener(v -> navController.navigate(R.id.homeFragment));
+
         // Search bar
         binding.searchBar.setOnClickListener(v -> 
             navController.navigate(R.id.searchFragment)
@@ -156,8 +159,12 @@ public class HomeFragment extends Fragment {
         viewModel.getCurrentUser().observe(getViewLifecycleOwner(), user -> {
             if (user != null) {
                 binding.textAvatarInitials.setText(user.getInitials());
-                binding.textUserName.setText("Ready to be productive?");
-                
+                boolean guest = TaskRepository.GUEST_USER_EMAIL.equalsIgnoreCase(
+                        user.getEmail() != null ? user.getEmail() : "");
+                binding.textUserName.setText(guest
+                        ? getString(R.string.home_subtitle_guest)
+                        : getString(R.string.home_subtitle_productive));
+
                 // Set avatar color
                 int colorRes = getAvatarColor(user.getAvatarColor());
                 binding.profileButton.setBackgroundTintList(
